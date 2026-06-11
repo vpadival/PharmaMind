@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ============================================================
+   PHARMASPHERE AI — PROFESSIONAL DARK DESIGN SYSTEM
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  /* Core Background Layers */
+  --bg-base:       #071426; /* Deep Navy */
+  --bg-surface:    #071426; /* Deep Navy */
+  --bg-card:       #0B1E36; /* Lighter Navy */
+  --bg-elevated:   #0F2544;
+  --bg-hover:      #15315B;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-muted:  rgba(255, 255, 255, 0.10);
+  --border-glow:   rgba(0, 183, 255, 0.30); /* Electric Blue Glow */
+
+  /* Text */
+  --text-primary:  #FFFFFF;
+  --text-secondary:#94A3B8;
+  --text-muted:    #64748B;
+  --text-disabled: #334155;
+
+  /* Brand Accents */
+  --royal-blue:    #0057FF;
+  --electric-blue: #00B7FF;
+  --emerald-green: #22C55E;
+  --amber-warning: #F59E0B;
+  --red-critical:  #EF4444;
+  --purple-insight:#7C3AED;
+
+  /* Glow Colors */
+  --glow-indigo: rgba(0, 87, 255, 0.15);
+  --glow-teal:   rgba(0, 183, 255, 0.15);
+  --glow-rose:   rgba(239, 68, 68, 0.15);
+  --glow-amber:  rgba(245, 158, 11, 0.12);
+}
+
+@theme {
+  --color-deepNavy:     #071426;
+  --color-royalBlue:    #0057FF;
+  --color-electricBlue: #00B7FF;
+  --color-emeraldGreen: #22C55E;
+  --color-amberWarning: #F59E0B;
+  --color-redCritical:  #EF4444;
+  --color-purpleInsight:#7C3AED;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Remove default outline; add custom focus ring */
+  *:focus-visible {
+    outline: 2px solid var(--indigo-500);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   SCROLLBARS
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* ============================================================
+   GLASSMORPHISM UTILITIES
+   ============================================================ */
+
+/* Primary glass card */
+.glass {
+  background: rgba(17, 24, 39, 0.80);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 8px 40px rgba(0,0,0,0.40),
+    0 1px 0 rgba(255,255,255,0.05) inset;
+}
+
+/* Elevated surface */
+.glass-elevated {
+  background: rgba(26, 34, 53, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.50),
+    0 1px 0 rgba(255,255,255,0.07) inset;
+}
+
+/* Sidebar glass */
+.glass-sidebar {
+  background: rgba(10, 14, 28, 0.92);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 4px 0 40px rgba(0,0,0,0.40);
+}
+
+/* Electric Blue / Royal Blue tinted card */
+.glass-indigo {
+  background: rgba(0, 87, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 183, 255, 0.20);
+  box-shadow: 0 4px 20px rgba(0, 183, 255, 0.06), 0 0 0 1px rgba(0, 183, 255, 0.08) inset;
+}
+
+/* Teal tinted card */
+.glass-teal {
+  background: rgba(20, 184, 166, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(20, 184, 166, 0.20);
+  box-shadow: 0 4px 20px rgba(20, 184, 166, 0.06);
+}
+
+/* Rose tinted card */
+.glass-rose {
+  background: rgba(244, 63, 94, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 63, 94, 0.22);
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.08);
+}
+
+/* Amber tinted card */
+.glass-amber {
+  background: rgba(251, 191, 36, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(251, 191, 36, 0.20);
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.06);
+}
+
+/* Emerald tinted card */
+.glass-emerald {
+  background: rgba(52, 211, 153, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(52, 211, 153, 0.20);
+  box-shadow: 0 4px 20px rgba(52, 211, 153, 0.06);
+}
+
+/* ============================================================
+   GRADIENT UTILITIES
+   ============================================================ */
+.gradient-brand {
+  background: linear-gradient(135deg, #0057FF 0%, #00B7FF 100%);
+}
+.gradient-brand-text {
+  background: linear-gradient(135deg, #00B7FF 0%, #0057FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-teal-text {
+  background: linear-gradient(135deg, #00B7FF 0%, #00E5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-rose-text {
+  background: linear-gradient(135deg, #EF4444 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   GLOW SPOT BACKGROUNDS
+   ============================================================ */
+.glow-spot {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+}
+.glow-spot-indigo {
+  background: radial-gradient(circle, rgba(0, 87, 255, 0.18) 0%, transparent 70%);
+}
+.glow-spot-teal {
+  background: radial-gradient(circle, rgba(0, 183, 255, 0.15) 0%, transparent 70%);
+}
+.glow-spot-rose {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+}
+
+/* ============================================================
+   CAPSULE HALVES (LANDING)
+   ============================================================ */
+.capsule-half-top {
+  border-radius: 120px 120px 0 0;
+  background: linear-gradient(180deg, #00B7FF 0%, #0057FF 100%);
+  box-shadow:
+    0 -10px 40px rgba(0, 183, 255, 0.75),
+    0 0 30px rgba(0, 87, 255, 0.45) inset;
+  transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+}
+.capsule-half-top::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 18px;
+  width: 12px;
+  height: 50px;
+  background: rgba(255,255,255,0.22);
+  border-radius: 9999px;
+  filter: blur(2px);
+}
+
+.capsule-half-bottom {
+  border-radius: 0 0 120px 120px;
+  background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 50%, #CBD5E1 100%);
+  box-shadow:
+    0 10px 40px rgba(255, 255, 255, 0.25),
+    0 0 20px rgba(255, 255, 255, 0.15) inset;
+  transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 3px solid rgba(255, 255, 255, 0.85);
+}
+.capsule-half-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 18px;
+  width: 12px;
+  height: 40px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 9999px;
+  filter: blur(2px);
+}
+
+/* ============================================================
+   MICRO-ANIMATIONS
+   ============================================================ */
+
+/* Float */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-10px) rotate(0.5deg); }
+  66%       { transform: translateY(-4px) rotate(-0.5deg); }
+}
+.animate-float-slow    { animation: float 7s ease-in-out infinite; }
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(8px); }
+}
+.animate-float-reverse { animation: float-reverse 6s ease-in-out infinite; }
+
+/* Float Around */
+@keyframes float-around {
+  0%   { transform: translateY(0)  translateX(0); }
+  25%  { transform: translateY(-20px) translateX(15px); }
+  50%  { transform: translateY(-8px) translateX(30px); }
+  75%  { transform: translateY(-25px) translateX(10px); }
+  100% { transform: translateY(0)  translateX(0); }
+}
+.animate-float-around { animation: float-around 18s ease-in-out infinite; }
+
+/* Glow Pulse */
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.04); }
+}
+.animate-glow { animation: glowPulse 4s ease-in-out infinite; }
+
+/* Shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Fade + Slide Up */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeSlideUp 0.5s ease-out both; }
+
+/* Scale In */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scaleIn 0.4s ease-out both; }
+
+/* Orbit spin (slow) */
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-orbit-slow { animation: orbit 12s linear infinite; }
+.animate-orbit-med  { animation: orbit 8s linear infinite; }
+
+/* Ping glow badge */
+@keyframes pingGlow {
+  0%   { transform: scale(1); opacity: 0.8; }
+  75%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.animate-ping-glow {
+  animation: pingGlow 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Stars twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 1; }
+}
+
+/* ============================================================
+   RECHARTS DARK THEME
+   ============================================================ */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.05) !important;
+}
+
+.recharts-text {
+  fill: #64748B !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px !important;
+}
+
+.recharts-legend-item-text {
+  color: #94A3B8 !important;
+  font-size: 11px !important;
+}
+
+.recharts-default-tooltip {
+  background-color: #1A2235 !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.50) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.recharts-tooltip-label {
+  color: #F0F4FF !important;
+  font-weight: 700 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.recharts-tooltip-item {
+  color: #94A3B8 !important;
+}
+
+/* ============================================================
+   INPUT FIELD OVERRIDES (Dark theme)
+   ============================================================ */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.6);
+  cursor: pointer;
+}
+
+/* Range slider accent color */
+input[type="range"] {
+  accent-color: #6366F1;
+}
+
+/* ============================================================
+   BUTTON BASE
+   ============================================================ */
+.btn-primary {
+  background: linear-gradient(135deg, #0057FF, #0088FF); /* Royal Blue to soft action */
+  color: white;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 87, 255, 0.3);
+  border: 1px solid rgba(0, 87, 255, 0.45);
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 87, 255, 0.45);
+  background: linear-gradient(135deg, #0077FF, #0057FF);
+}
+
+.btn-teal {
+  background: linear-gradient(135deg, #00B7FF, #0088FF); /* Electric Blue to Royal */
+  color: white;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 183, 255, 0.25);
+}
+.btn-teal:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0, 183, 255, 0.35);
+}
+
+/* ============================================================
+   STATUS BADGE PILLS
+   ============================================================ */
+.badge-verified {
+  background: rgba(34, 197, 94, 0.12); /* Emerald Green */
+  color: #22C55E;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.badge-pending {
+  background: rgba(245, 158, 11, 0.12); /* Amber Warning */
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.badge-open {
+  background: rgba(0, 183, 255, 0.12); /* Electric Blue */
+  color: #00B7FF;
+  border: 1px solid rgba(0, 183, 255, 0.25);
+}
+.badge-matched {
+  background: rgba(34, 197, 94, 0.12); /* Emerald Green */
+  color: #22C55E;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.badge-cancelled {
+  background: rgba(239, 68, 68, 0.10); /* Red Critical */
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.20);
+}
+.badge-applied {
+  background: rgba(0, 87, 255, 0.12); /* Royal Blue */
+  color: #0057FF;
+  border: 1px solid rgba(0, 87, 255, 0.25);
+}
+.badge-critical {
+  background: rgba(239, 68, 68, 0.12); /* Red Critical */
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.30);
+}
+.badge-warning {
+  background: rgba(245, 158, 11, 0.12); /* Amber Warning */
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
