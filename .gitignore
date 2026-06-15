@@ -27,6 +27,7 @@ backend/*.pkl
 # Node
 frontend/node_modules/
 frontend/dist/
+node_modules/
 
 # OS
 .DS_Store
