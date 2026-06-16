@@ -40,24 +40,29 @@ PharmaMind/
 - Python ≥ 3.14
 - Node.js ≥ 18
 
-### Backend
+
 
 ```bash
-cd backend
+# 1. Clone the repo
+git clone https://github.com/vpadival/PharmaMind.git
 
-# 1. Install dependencies
+# 2. Install dependencies (run from the repository root)
 pip install -r requirements.txt
 
-# 2. Configure secrets (REQUIRED)
+# 3. Configure secrets (REQUIRED)
 cp .env.example .env
 # Edit .env and set a strong JWT_SECRET_KEY:
 #   python -c "import secrets; print(secrets.token_hex(32))"
+```
 
-# 3. Seed the database and train all ML models
-python seed.py
+### Backend
 
-# 4. Start the API server
-python app.py
+```bash
+# 1. Seed the database and train all ML models
+python backend/seed.py
+
+# 2. Start the API server
+python backend/app.py
 # Runs on http://localhost:5000
 ```
 
