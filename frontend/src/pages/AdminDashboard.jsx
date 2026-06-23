@@ -18,6 +18,13 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
   const [resolving, setResolving] = useState(false);
 
   const token = localStorage.getItem('token');
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    const handleUnread = (e) => setUnreadCount(e.detail);
+    window.addEventListener('unread-notifications', handleUnread);
+    return () => window.removeEventListener('unread-notifications', handleUnread);
+  }, []);
 
   const fetchAdminData = async () => {
     setLoading(true);
@@ -99,9 +106,12 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
           />
         </div>
         <div className="flex items-center space-x-4">
-          <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer">
+          <button 
+            onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
+            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer"
+          >
             <Bell size={16} />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF]" />
+            {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF] animate-pulse" />}
           </button>
           <div className="w-[1px] h-6 bg-slate-200" />
           <div className="flex items-center space-x-2.5">

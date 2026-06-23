@@ -36,6 +36,13 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
   const [activeFilterPill, setActiveFilterPill] = useState('all');
 
   const token = localStorage.getItem('token');
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    const handleUnread = (e) => setUnreadCount(e.detail);
+    window.addEventListener('unread-notifications', handleUnread);
+    return () => window.removeEventListener('unread-notifications', handleUnread);
+  }, []);
 
   const fetchDashboardData = async () => {
     try {
@@ -151,9 +158,12 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
           />
         </div>
         <div className="flex items-center space-x-4">
-          <button className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer">
+          <button 
+            onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
+            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer"
+          >
             <Bell size={16} />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF]" />
+            {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF] animate-pulse" />}
           </button>
           <div className="w-[1px] h-6 bg-slate-200" />
           <div className="flex items-center space-x-2.5">
@@ -658,6 +668,240 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Specialties</span>
                 <span className="font-bold text-slate-800 block">{profile.skills || 'Clinical Pharmacy'}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Panel: Trust Score */}
+        {activeTab === 'Trust Score' && (
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-[#0B1E36] to-[#071426] border border-[#1E293B] rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#00B7FF]/10 blur-3xl rounded-full" />
+              <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                <div className="w-40 h-40 rounded-full border-8 border-[#00B7FF]/20 flex items-center justify-center relative">
+                  <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="46" fill="transparent" stroke="#00B7FF" strokeWidth="8" strokeDasharray="289" strokeDashoffset={289 - (289 * (profile?.trust_score || 0)) / 100} strokeLinecap="round" className="drop-shadow-[0_0_8px_#00B7FF]" />
+                  </svg>
+                  <div className="text-center">
+                    <span className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">{profile?.trust_score ?? '—'}</span>
+                    <span className="text-[10px] uppercase tracking-widest text-[#00B7FF] font-bold block mt-1">Excellent</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black tracking-tight mb-2">AI Trust Score Analysis</h3>
+                  <p className="text-sm text-slate-400 mb-6 max-w-xl leading-relaxed">Your Trust Score represents your reliability, punctuality, and performance. A score above 85 unlocks premium shifts, auto-matching, and up to 15% bonus incentives.</p>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold text-slate-300">Punctuality</span>
+                        <span className="text-xs font-black text-[#22C55E]">98%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#22C55E] w-[98%]" /></div>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold text-slate-300">Cancellation Rate</span>
+                        <span className="text-xs font-black text-[#22C55E]">0.5%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#22C55E] w-[99.5%]" /></div>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold text-slate-300">Patient Ratings</span>
+                        <span className="text-xs font-black text-[#00B7FF]">{profile?.rating || '4.9'}</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#00B7FF] w-[96%]" /></div>
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-xs font-bold text-slate-300">Profile Completeness</span>
+                        <span className="text-xs font-black text-[#7C3AED]">100%</span>
+                      </div>
+                      <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#7C3AED] w-[100%]" /></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Panel: Certificates */}
+        {activeTab === 'Certificates' && (
+          <div className="space-y-6">
+            <div className="flex justify-between items-end pb-4 border-b border-slate-200">
+              <div>
+                <h2 className="text-xl font-black text-slate-900 tracking-tight">Digital Credential Passport</h2>
+                <p className="text-slate-500 text-xs mt-1">Verified blockchain-backed credentials and state licenses.</p>
+              </div>
+              <button className="bg-[#0057FF] hover:bg-[#00B7FF] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md shadow-[#0057FF]/20 flex items-center gap-2">
+                <ShieldCheck size={14} /> Upload Credential
+              </button>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* License Card */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#22C55E]/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-all" />
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-3 bg-[#22C55E]/10 text-[#22C55E] rounded-xl"><Award size={24} /></div>
+                  <span className="bg-[#22C55E] text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm shadow-[#22C55E]/30">Active & Verified</span>
+                </div>
+                <h4 className="text-lg font-black text-slate-800 mb-1">State Pharmacy License</h4>
+                <p className="text-sm text-slate-500 mb-4">Board of Pharmacy • State of {profile?.license_state || 'Operation'}</p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">License No.</span>
+                    <span className="font-mono text-sm font-bold text-slate-700">{profile?.license_number || 'PH-XXXXX'}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Expires</span>
+                    <span className="text-xs font-bold text-slate-700">Dec 2026</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Immunization Card */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#00B7FF]/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-all" />
+                <div className="flex justify-between items-start mb-4">
+                  <div className="p-3 bg-[#00B7FF]/10 text-[#00B7FF] rounded-xl"><Shield size={24} /></div>
+                  <span className="bg-[#00B7FF] text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm shadow-[#00B7FF]/30">Verified</span>
+                </div>
+                <h4 className="text-lg font-black text-slate-800 mb-1">Immunization Certification</h4>
+                <p className="text-sm text-slate-500 mb-4">APhA Pharmacy-Based Immunization Delivery</p>
+                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Certificate ID</span>
+                    <span className="font-mono text-sm font-bold text-slate-700">IMZ-99281-A</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Completed</span>
+                    <span className="text-xs font-bold text-slate-700">Aug 2023</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Panel: My Earnings */}
+        {activeTab === 'My Earnings' && (
+          <div className="space-y-6">
+            <div className="flex justify-between items-end pb-4 border-b border-slate-200">
+              <div>
+                <h2 className="text-xl font-black text-slate-900 tracking-tight">Financial Overview</h2>
+                <p className="text-slate-500 text-xs mt-1">Track your completed shifts, payouts, and bonus incentives.</p>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Available Balance</span>
+                <span className="text-3xl font-black text-[#22C55E] tracking-tight">$4,250.00</span>
+              </div>
+            </div>
+
+            {/* Earnings Line Chart */}
+            <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs h-64">
+              <h3 className="text-sm font-bold text-slate-800 mb-4">Earnings Trajectory (Last 6 Months)</h3>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={earningsData} margin={{ top: 5, right: 5, left: -20, bottom: 20 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
+                  <XAxis dataKey="month" stroke="#94A3B8" fontSize={11} tickLine={false} axisLine={false} dy={10} />
+                  <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `$${val}`} />
+                  <Tooltip formatter={(value) => [`$${value}`, "Earnings"]} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }} />
+                  <Line type="monotone" dataKey="Earnings" stroke="#22C55E" strokeWidth={3} dot={{ r: 4, fill: '#22C55E', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 6 }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Recent Transactions */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
+              <h3 className="text-sm font-bold text-slate-800 mb-4">Recent Payouts</h3>
+              <div className="space-y-3">
+                {[
+                  { date: 'May 15, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+$1,850.00' },
+                  { date: 'May 08, 2024', desc: 'Direct Deposit - Weekly Shift Payout + Bonus', amount: '+$2,100.00' },
+                  { date: 'May 01, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+$1,650.00' }
+                ].map((t, i) => (
+                  <div key={i} className="flex justify-between items-center p-4 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-[#22C55E]/10 text-[#22C55E] flex items-center justify-center">
+                        <TrendingUp size={18} />
+                      </div>
+                      <div>
+                        <span className="font-bold text-sm text-slate-800 block">{t.desc}</span>
+                        <span className="text-xs text-slate-400">{t.date}</span>
+                      </div>
+                    </div>
+                    <span className="font-black text-[#22C55E]">{t.amount}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Panel: Messages */}
+        {activeTab === 'Messages' && (
+          <div className="h-[600px] bg-white border border-slate-200 rounded-2xl shadow-xs flex overflow-hidden">
+            {/* Sidebar List */}
+            <div className="w-1/3 border-r border-slate-200 flex flex-col">
+              <div className="p-4 border-b border-slate-200 bg-slate-50">
+                <input type="text" placeholder="Search messages..." className={INPUT_CLS + " w-full"} />
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                <div className="p-4 border-b border-slate-100 bg-[#0057FF]/5 cursor-pointer relative">
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0057FF]" />
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="font-bold text-sm text-slate-800">Walgreens #1024</span>
+                    <span className="text-[10px] font-bold text-[#0057FF]">10:42 AM</span>
+                  </div>
+                  <p className="text-xs text-slate-500 truncate">Are you available to come in 30 mins early?</p>
+                </div>
+                <div className="p-4 border-b border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors">
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="font-bold text-sm text-slate-800">CVS Pharmacy North</span>
+                    <span className="text-[10px] text-slate-400">Yesterday</span>
+                  </div>
+                  <p className="text-xs text-slate-500 truncate">Thank you for covering the shift!</p>
+                </div>
+              </div>
+            </div>
+            {/* Chat Area */}
+            <div className="flex-1 flex flex-col bg-slate-50/50">
+              <div className="p-4 border-b border-slate-200 bg-white flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0057FF] to-[#00B7FF] flex items-center justify-center text-white font-bold">W</div>
+                  <div>
+                    <h3 className="font-bold text-slate-800 text-sm">Walgreens #1024</h3>
+                    <span className="text-[10px] text-[#22C55E] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] block" /> Online
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 p-6 overflow-y-auto flex flex-col gap-4">
+                <div className="self-start max-w-[70%]">
+                  <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-sm shadow-sm text-sm text-slate-700">
+                    Hi Doctor, are you available to come in 30 mins early for tomorrow's shift? We have a large queue built up.
+                  </div>
+                  <span className="text-[10px] text-slate-400 mt-1 ml-1 block">10:42 AM</span>
+                </div>
+                <div className="self-end max-w-[70%]">
+                  <div className="bg-[#0057FF] text-white p-3 rounded-2xl rounded-tr-sm shadow-sm shadow-[#0057FF]/20 text-sm">
+                    Yes, absolutely! I will be there at 8:30 AM.
+                  </div>
+                  <span className="text-[10px] text-slate-400 mt-1 mr-1 block text-right">10:45 AM</span>
+                </div>
+              </div>
+              <div className="p-4 bg-white border-t border-slate-200">
+                <div className="relative">
+                  <input type="text" placeholder="Type your message..." className={INPUT_CLS + " pr-12 rounded-full"} />
+                  <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#0057FF] text-white flex items-center justify-center hover:bg-[#00B7FF] transition-colors cursor-pointer">
+                    <Send size={14} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
