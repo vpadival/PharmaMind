@@ -11,11 +11,7 @@ const menuConfigs = {
   owner: [
     { id: 'Dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'User Management', label: 'User Management', icon: Users },
-    { id: 'Pharmacy Management', label: 'Pharmacy Management', icon: Store },
-    { id: 'Pharmacist Verification', label: 'Pharmacist Verification', icon: UserCheck },
-    { id: 'License Verification', label: 'License Verification', icon: ShieldCheck },
-    { id: 'Fraud Detection', label: 'Fraud Detection', icon: ShieldAlert },
-    { id: 'Reports & Analytics', label: 'Reports & Analytics', icon: BarChart3 },
+    { id: 'Continuity Simulator', label: 'Continuity Simulator', icon: Activity },
     { id: 'System Logs', label: 'System Logs', icon: Terminal },
     { id: 'Notifications', label: 'Notifications', icon: Bell, hasBadge: true },
     { id: 'Settings', label: 'Settings', icon: Settings },
@@ -108,11 +104,21 @@ export default function Navbar({ user, activeTab, setActiveTab, onLogout, API_BA
   };
 
   const unreadCount = notifications.filter(n => !n.is_read).length;
+
+  useEffect(() => {
+    // Broadcast unread count to other components
+    window.dispatchEvent(new CustomEvent('unread-notifications', { detail: unreadCount }));
+  }, [unreadCount]);
+
+  useEffect(() => {
+    const handleOpenNotif = () => setShowNotif(true);
+    window.addEventListener('open-notifications', handleOpenNotif);
+    return () => window.removeEventListener('open-notifications', handleOpenNotif);
+  }, []);
   const initials = (user.email || 'U').substring(0, 2).toUpperCase();
 
   const handleTabClick = (item) => {
-    if (item.id === 'Notifications' && isCollapsed) {
-      // Toggle notif drawer if collapsed
+    if (item.id === 'Notifications') {
       setShowNotif(prev => !prev);
     } else {
       setActiveTab(item.id);

@@ -33,6 +33,10 @@ from sklearn.metrics import (
 )
 from sklearn.preprocessing import StandardScaler
 
+class ModelNotLoadedError(Exception):
+    """Exception raised when attempting to predict with an unloaded model."""
+    pass
+
 MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -144,7 +148,7 @@ class PharmaMLModels:
         ], axis=1).values
         y = df['shortage'].values
 
-        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y.tolist())
         model = RandomForestClassifier(n_estimators=100, max_depth=8, random_state=42)
         model.fit(X_tr, y_tr)
         self._eval_classifier("Shortage Predictor", model, X_te, y_te)
@@ -161,9 +165,7 @@ class PharmaMLModels:
                                    active_pharmacists_count,
                                    last_week_shortage_rate]])
             return float(model.predict_proba(features)[0][1])
-        # Fallback heuristic
-        base = 0.1 + leave_requests_count * 0.15 - active_pharmacists_count * 0.05 + last_week_shortage_rate * 0.3
-        return float(min(max(base, 0.0), 1.0))
+        raise ModelNotLoadedError("Shortage predictor model is not loaded.")
 
     # ==================================================================
     # 2. Pharmacist Acceptance Prediction  (classifier)
@@ -181,7 +183,7 @@ class PharmaMLModels:
                  'pharmacist_rating', 'pharmacist_trust_score']].values
         y = df['accepted'].values
 
-        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y.tolist())
         # Scale features — Logistic Regression is sensitive to feature magnitude
         scaler = StandardScaler()
         X_tr_s = scaler.fit_transform(X_tr)
@@ -202,11 +204,7 @@ class PharmaMLModels:
                            pharmacist_rating, pharmacist_trust_score]])
             )
             return float(model.predict_proba(features)[0][1])
-        # Fallback heuristic
-        score = (0.5 + (hourly_rate - 60.0) * 0.01 - distance_miles * 0.015
-                 + skills_match_count * 0.1 + (pharmacist_rating - 4.0) * 0.1
-                 + (pharmacist_trust_score - 90.0) * 0.005)
-        return float(min(max(score, 0.05), 0.98))
+        raise ModelNotLoadedError("Acceptance predictor model is not loaded.")
 
     # ==================================================================
     # 3. Demand Forecasting  (regressor)
@@ -241,12 +239,7 @@ class PharmaMLModels:
             sd, cd = cyclic_encode_dow(day_of_week)
             features = np.array([[sm, cm, sd, cd, is_holiday, rolling_avg_demand_30d]])
             return float(model.predict(features)[0])
-        base = rolling_avg_demand_30d if rolling_avg_demand_30d > 0 else 2.5
-        if is_holiday:
-            base += 1.2
-        if day_of_week in [5, 6]:
-            base -= 0.5
-        return max(base, 0.0)
+        raise ModelNotLoadedError("Demand forecaster model is not loaded.")
 
     # ==================================================================
     # 4. Trust Risk Prediction  (classifier — risk of next-shift cancel)
@@ -264,7 +257,7 @@ class PharmaMLModels:
                  'avg_rating', 'punctuality_rate']].values
         y = df['high_risk'].values
 
-        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y.tolist())
         model = GradientBoostingClassifier(n_estimators=100, max_depth=4, random_state=42)
         model.fit(X_tr, y_tr)
         self._eval_classifier("Trust Risk Predictor", model, X_te, y_te)
@@ -277,11 +270,7 @@ class PharmaMLModels:
             features = np.array([[shift_completion_rate, cancellation_count_last_30d,
                                    avg_rating, punctuality_rate]])
             return float(model.predict_proba(features)[0][1])
-        risk = (0.05 + (100.0 - shift_completion_rate) * 0.01
-                + cancellation_count_last_30d * 0.15
-                + (5.0 - avg_rating) * 0.1
-                + (100.0 - punctuality_rate) * 0.005)
-        return float(min(max(risk, 0.01), 0.95))
+        raise ModelNotLoadedError("Trust risk predictor model is not loaded.")
 
     # ==================================================================
     # 5. Workforce Health Score  (regressor)
@@ -312,11 +301,7 @@ class PharmaMLModels:
             features = np.array([[active_pharmacists, shift_fulfillment_rate,
                                    leave_requests_count, predicted_shortage_prob]])
             return float(model.predict(features)[0])
-        score = (80.0 + min(active_pharmacists * 3, 15)
-                 + (shift_fulfillment_rate - 90.0) * 0.8
-                 - leave_requests_count * 5.0
-                 - predicted_shortage_prob * 30.0)
-        return float(min(max(score, 10.0), 100.0))
+        raise ModelNotLoadedError("Workforce health regressor model is not loaded.")
 
     # ==================================================================
     # 6. Retention / Churn Prediction  (classifier)
@@ -334,7 +319,7 @@ class PharmaMLModels:
                  'average_rating', 'trust_score', 'monthly_earnings']].values
         y = df['inactive'].values
 
-        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y.tolist())
         model = RandomForestClassifier(n_estimators=100, max_depth=8, random_state=42)
         model.fit(X_tr, y_tr)
         self._eval_classifier("Retention / Churn Predictor", model, X_te, y_te)
@@ -347,14 +332,7 @@ class PharmaMLModels:
             features = np.array([[days_since_last_shift, completed_shifts_count,
                                    average_rating, trust_score, monthly_earnings]])
             return float(model.predict_proba(features)[0][1])
-        risk = 0.05
-        if days_since_last_shift > 30:  risk += 0.3
-        if days_since_last_shift > 90:  risk += 0.4
-        if completed_shifts_count < 5:  risk += 0.1
-        if average_rating < 4.0:        risk += 0.1
-        if trust_score < 85.0:          risk += 0.08
-        if monthly_earnings < 500.0:    risk += 0.1
-        return float(min(max(risk, 0.02), 0.98))
+        raise ModelNotLoadedError("Retention / Churn predictor model is not loaded.")
 
     # ==================================================================
     # 7. Closure Risk Prediction  (classifier)
@@ -378,7 +356,7 @@ class PharmaMLModels:
                  'health_score', 'has_emergency_unfilled']].values
         y = df['closure_risk_label'].values
 
-        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+        X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y.tolist())
         model = GradientBoostingClassifier(n_estimators=100, max_depth=4, random_state=42)
         model.fit(X_tr, y_tr)
         self._eval_classifier("Closure Risk Predictor", model, X_te, y_te)
@@ -391,12 +369,7 @@ class PharmaMLModels:
             features = np.array([[unfilled_shifts_count, active_pharmacists_count,
                                    health_score, int(has_emergency_unfilled)]])
             return float(model.predict_proba(features)[0][1])
-        risk = 0.0
-        if unfilled_shifts_count > 0: risk += 0.25 * unfilled_shifts_count
-        if has_emergency_unfilled:    risk += 0.4
-        risk += (100.0 - health_score) * 0.005
-        if active_pharmacists_count == 0: risk += 0.5
-        return float(min(max(risk, 0.0), 1.0))
+        raise ModelNotLoadedError("Closure risk predictor model is not loaded.")
 
 
 # Singleton used by app.py, simulators.py, scheduler.py
