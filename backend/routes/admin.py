@@ -34,6 +34,7 @@ def get_pending_licenses():
             "license_number": p.license_number,
             "license_state": p.license_state,
             "license_status": p.license_status,
+            "trust_score": p.trust_score,
             "expiration_date": lic.expiration_date.strftime("%Y-%m-%d") if lic else "N/A"
         })
         
@@ -70,7 +71,7 @@ def verify_license(ph_id):
             db.session.add(lic)
             
         # Notify pharmacist
-        notif = Notification(
+        notif = Notification(  # type: ignore
             user_id=ph.user_id,
             title="License Verification Update",
             message=f"Your pharmacist license has been {status} by the admin."
@@ -130,7 +131,7 @@ def verify_pharmacy(pharm_id):
         db.session.add(pharm)
         
         # Notify owner
-        notif = Notification(
+        notif = Notification(  # type: ignore
             user_id=pharm.user_id,
             title="Pharmacy Verification Update",
             message=f"Your pharmacy profile status has been updated to {status} by the admin."
