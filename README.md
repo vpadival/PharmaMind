@@ -11,6 +11,8 @@ and pharmacy closure risk.
 
 ## Architecture
 
+![System Architecture](images/pharmaind_three_tier_mvc.png)
+
 ```
 PharmaMind/
 ├── backend/               Flask API + ML pipeline
