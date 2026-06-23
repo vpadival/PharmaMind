@@ -94,7 +94,7 @@ export default function AnalyticsReports() {
     },
     {
       label:     'Avg Response Time',
-      value:     data.kpis.avg_response_min != null ? `${data.kpis.avg_response_min} min` : 'N/A',
+      value:     data.kpis.avg_response_min != null ? `${data.kpis.avg_response_min} kmn` : 'N/A',
       sub:       'Creation → match (sampled)',
       icon:      Clock,
       iconColor: 'text-[#F59E0B]',

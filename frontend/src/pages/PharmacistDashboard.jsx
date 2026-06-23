@@ -325,7 +325,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                       { id: 'all', label: 'All Shifts' },
                       { id: 'emergency', label: 'Emergency Core' },
                       { id: 'high-paying', label: 'High Pay ≥₹70' },
-                      { id: 'close-range', label: 'Near Me <10mi' },
+                      { id: 'close-range', label: 'Near Me <10km' },
                     ].map(pill => (
                       <button
                         key={pill.id}

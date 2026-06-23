@@ -626,7 +626,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                 <input type="number" defaultValue={15} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">AI Matching Proximity Radius (Miles)</label>
+                <label className="font-bold text-slate-600 block">AI Matching Proximity Radius (km)</label>
                 <input type="number" defaultValue={35} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">

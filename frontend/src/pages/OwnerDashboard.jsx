@@ -362,7 +362,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                                   <span className="text-[9px] font-bold ml-0.5">4.8</span>
                                 </div>
                               </div>
-                              <span className="text-[10px] text-slate-500 block">Proximity: 2.2 mi away</span>
+                              <span className="text-[10px] text-slate-500 block">Proximity: 2.2 km away</span>
                             </div>
                           </div>
                           <button
@@ -648,7 +648,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
             </div>
             <div className="space-y-2 text-xs h-96 overflow-y-auto pr-1">
               <p className="text-slate-500">[2026-06-10 22:35:10] Initialize twin optimizer environment...</p>
-              <p className="text-slate-500">[2026-06-10 22:35:12] Query local pharmacist registry within 35 miles...</p>
+              <p className="text-slate-500">[2026-06-10 22:35:12] Query local pharmacist registry within 35 km...</p>
               <p className="text-[#00B7FF]">[2026-06-10 22:35:15] Found 12 active verified pharmacists.</p>
               <p className="text-[#22C55E]">[2026-06-10 22:35:18] Monte-Carlo Simulation success. Closure risk: 24% (Low Risk).</p>
             </div>
@@ -765,7 +765,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       <span className="bg-[#22C55E]/10 text-[#22C55E] text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-0.5">
-                        <MapPin size={8} /><span>{c.distance} mi</span>
+                        <MapPin size={8} /><span>{c.distance} km</span>
                       </span>
                       <span className="bg-white/5 border border-slate-800 text-slate-400 text-[9px] font-bold px-2 py-0.5 rounded-full">
                         Trust: {c.trust_score}%
