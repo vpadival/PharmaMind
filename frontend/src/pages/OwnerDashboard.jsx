@@ -444,7 +444,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                           <div className="flex items-center justify-between border-t border-slate-100 pt-2.5 mt-2.5 pl-1">
                             <div>
                               <span className="text-[9px] text-slate-400 block font-semibold">Rate</span>
-                              <span className="text-xs font-black text-slate-800">${s.hourly_rate}/hr</span>
+                              <span className="text-xs font-black text-slate-800">₹{s.hourly_rate}/hr</span>
                             </div>
  
                             {s.status === 'applied' ? (
@@ -664,7 +664,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
             </div>
             <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700">
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Default Hourly Rate ($/hr)</label>
+                <label className="font-bold text-slate-600 block">Default Hourly Rate (₹/hr)</label>
                 <input type="number" defaultValue={65} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
@@ -701,7 +701,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 <input type="date" required value={shiftDate} onChange={e => setShiftDate(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Hourly Rate ($)</label>
+                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Hourly Rate (₹)</label>
                 <input type="number" required min={40} value={shiftRate} onChange={e => setShiftRate(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
             </div>

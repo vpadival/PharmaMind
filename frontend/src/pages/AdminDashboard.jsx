@@ -622,7 +622,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                 <input type="number" defaultValue={1000} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Default Emergency Rate Bonus ($/hr)</label>
+                <label className="font-bold text-slate-600 block">Default Emergency Rate Bonus (₹/hr)</label>
                 <input type="number" defaultValue={15} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">

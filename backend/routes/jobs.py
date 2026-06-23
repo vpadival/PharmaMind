@@ -352,7 +352,7 @@ def cancel_job(job_id):
             date=job.date,
             start_time=job.start_time,
             end_time=job.end_time,
-            hourly_rate=job.hourly_rate + 10.0, # Suggest +$10 incentive automatically
+            hourly_rate=job.hourly_rate + 10.0, # Suggest +₹10 incentive automatically
             status='open',
             is_emergency=True, # upgrade to emergency for immediate coverage
             is_auto_replacement=True

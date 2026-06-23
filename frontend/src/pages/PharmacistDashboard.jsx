@@ -190,7 +190,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               <div>
                 <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Workforce Retention Incentive Active</h4>
                 <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
-                  You qualify for a <strong className="text-[#22C55E]">+$10/hr bonus incentive</strong> on emergency shifts this week.
+                  You qualify for a <strong className="text-[#22C55E]">+₹10/hr bonus incentive</strong> on emergency shifts this week.
                 </p>
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                     {[
                       { id: 'all', label: 'All Shifts' },
                       { id: 'emergency', label: 'Emergency Core' },
-                      { id: 'high-paying', label: 'High Pay ≥$70' },
+                      { id: 'high-paying', label: 'High Pay ≥₹70' },
                       { id: 'close-range', label: 'Near Me <10mi' },
                     ].map(pill => (
                       <button
@@ -358,7 +358,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                               <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                             </div>
                             <div className="text-right space-y-2">
-                              <span className="text-xs font-black text-[#EF4444] block">${s.hourly_rate}/hr</span>
+                              <span className="text-xs font-black text-[#EF4444] block">₹{s.hourly_rate}/hr</span>
                               <button
                                 onClick={() => handleAcceptShift(s.id)}
                                 className="bg-[#EF4444] hover:bg-[#EF4444]/90 text-white font-bold text-[9px] px-3 py-1.5 rounded-lg cursor-pointer transition-all shadow-xs"
@@ -386,7 +386,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                             </div>
                           </div>
                           <div className="text-right space-y-2 flex-shrink-0 ml-4">
-                            <span className="text-xs font-black text-slate-800 block">${s.hourly_rate}/hr</span>
+                            <span className="text-xs font-black text-slate-800 block">₹{s.hourly_rate}/hr</span>
                             <button
                               onClick={() => handleAcceptShift(s.id)}
                               className="bg-[#0057FF]/5 hover:bg-[#0057FF]/10 text-[#0057FF] border border-[#0057FF]/10 font-bold text-[9px] px-3 py-1.5 rounded-lg cursor-pointer transition-all"
@@ -479,7 +479,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <span className="text-xs font-black text-[#22C55E]">${s.hourly_rate}/hr</span>
+                        <span className="text-xs font-black text-[#22C55E]">₹{s.hourly_rate}/hr</span>
                         <button
                           onClick={() => handleCancelShift(s.id)}
                           className="bg-[#EF4444]/10 hover:bg-[#EF4444]/20 text-[#EF4444] font-bold text-[10px] px-3 py-1.5 rounded-lg cursor-pointer transition-all border border-[#EF4444]/20"
@@ -508,7 +508,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                       </div>
                       <div className="text-right space-y-1.5">
-                        <span className="text-xs font-black text-slate-800 block">${s.hourly_rate}/hr</span>
+                        <span className="text-xs font-black text-slate-800 block">₹{s.hourly_rate}/hr</span>
                         <span className="bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20 text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider block">Applied</span>
                       </div>
                     </div>
@@ -797,7 +797,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               </div>
               <div className="text-right">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Available Balance</span>
-                <span className="text-3xl font-black text-[#22C55E] tracking-tight">$4,250.00</span>
+                <span className="text-3xl font-black text-[#22C55E] tracking-tight">₹4,250.00</span>
               </div>
             </div>
 
@@ -808,8 +808,8 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                 <LineChart data={earningsData} margin={{ top: 5, right: 5, left: -20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
                   <XAxis dataKey="month" stroke="#94A3B8" fontSize={11} tickLine={false} axisLine={false} dy={10} />
-                  <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `$${val}`} />
-                  <Tooltip formatter={(value) => [`$${value}`, "Earnings"]} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }} />
+                  <YAxis stroke="#94A3B8" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(val) => `₹${val}`} />
+                  <Tooltip formatter={(value) => [`₹${value}`, "Earnings"]} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }} />
                   <Line type="monotone" dataKey="Earnings" stroke="#22C55E" strokeWidth={3} dot={{ r: 4, fill: '#22C55E', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 6 }} />
                 </LineChart>
               </ResponsiveContainer>
@@ -820,9 +820,9 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               <h3 className="text-sm font-bold text-slate-800 mb-4">Recent Payouts</h3>
               <div className="space-y-3">
                 {[
-                  { date: 'May 15, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+$1,850.00' },
-                  { date: 'May 08, 2024', desc: 'Direct Deposit - Weekly Shift Payout + Bonus', amount: '+$2,100.00' },
-                  { date: 'May 01, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+$1,650.00' }
+                  { date: 'May 15, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+₹1,850.00' },
+                  { date: 'May 08, 2024', desc: 'Direct Deposit - Weekly Shift Payout + Bonus', amount: '+₹2,100.00' },
+                  { date: 'May 01, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+₹1,650.00' }
                 ].map((t, i) => (
                   <div key={i} className="flex justify-between items-center p-4 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors">
                     <div className="flex items-center gap-4">
