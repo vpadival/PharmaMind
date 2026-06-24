@@ -93,22 +93,22 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-800 min-h-screen select-none animate-scale-in">
+    <div className="bg-[#F8FAFC] dark:bg-darkBg text-slate-800 dark:text-white min-h-screen select-none animate-scale-in">
       
       {/* Search Header */}
-      <div className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-xs">
+      <div className="bg-white dark:bg-darkCard border-b border-slate-200 dark:border-darkBorder px-8 py-4 flex items-center justify-between shadow-xs">
         <div className="relative w-72">
           <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="Search anything..."
-            className="w-full bg-slate-50 border border-slate-200/80 focus:border-blue-500 focus:bg-white rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 outline-none transition-all"
+            className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder/80 focus:border-blue-500 focus:bg-white dark:bg-darkCard rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 dark:text-white outline-none transition-all"
           />
         </div>
         <div className="flex items-center space-x-4">
           <button 
             onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
-            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer"
+            className="p-2 text-slate-400 hover:text-slate-600 dark:text-slate-300 hover:bg-slate-100 rounded-xl relative cursor-pointer"
           >
             <Bell size={16} />
             {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF] animate-pulse" />}
@@ -119,7 +119,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
               {(user?.email || 'AD').substring(0, 2).toUpperCase()}
             </div>
             <div>
-              <span className="text-xs font-bold text-slate-800 block">{user?.email || 'Admin'}</span>
+              <span className="text-xs font-bold text-slate-800 dark:text-white block">{user?.email || 'Admin'}</span>
               <span className="text-[9px] font-bold text-slate-400 block uppercase tracking-wider">Super Administrator</span>
             </div>
           </div>
@@ -134,9 +134,9 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
           <div className="space-y-6">
             
             {/* Page Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200/60">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-darkBorder/60">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight">Admin Dashboard</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Admin Dashboard</h2>
                 <p className="text-slate-400 text-xs mt-1">Real-time oversight of platform activity, security audit logs, and registry status.</p>
               </div>
               <button
@@ -159,7 +159,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
               ].map((m, i) => {
                 const Icon = m.icon;
                 return (
-                  <div key={i} className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
+                  <div key={i} className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">{m.label}</span>
                       <span className="text-2xl font-black text-slate-950 block mt-1 tracking-tight">{m.value}</span>
@@ -180,7 +180,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
             <div className="grid lg:grid-cols-12 gap-6">
               
               {/* Platform Analytics Line chart */}
-              <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+              <div className="lg:col-span-8 bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Platform Analytics</h3>
                   <div className="flex space-x-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">
@@ -203,7 +203,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
               </div>
 
               {/* License Verification Pie chart */}
-              <div className="lg:col-span-4 bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
+              <div className="lg:col-span-4 bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex flex-col justify-between">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">License Verification</h3>
                   <div className="h-44 relative flex items-center justify-center">
@@ -218,7 +218,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                       </PieChart>
                     </ResponsiveContainer>
                     <div className="absolute text-center">
-                      <span className="text-xl font-black text-slate-800 block">{(licenses.length) || '22'}</span>
+                      <span className="text-xl font-black text-slate-800 dark:text-white block">{(licenses.length) || '22'}</span>
                       <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest block">Total</span>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
             <div className="grid lg:grid-cols-12 gap-6">
               
               {/* Verification Queue (col 8) */}
-              <div className="lg:col-span-8 bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+              <div className="lg:col-span-8 bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                 <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Verification Queue</h3>
                   <span className="bg-[#F59E0B]/10 text-[#F59E0B] text-[9px] font-bold px-2 py-0.5 rounded-full">
@@ -262,7 +262,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                             </div>
                             <div>
                               <div className="flex items-center space-x-2">
-                                <span className="text-xs font-bold text-slate-800">{l.name}</span>
+                                <span className="text-xs font-bold text-slate-800 dark:text-white">{l.name}</span>
                                 <span className="bg-[#7C3AED]/10 text-[#7C3AED] text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">Pharmacist</span>
                               </div>
                               <span className="text-[10px] text-slate-500 font-mono block">License: {l.license_number} ({l.license_state})</span>
@@ -296,7 +296,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                             </div>
                             <div>
                               <div className="flex items-center space-x-2">
-                                <span className="text-xs font-bold text-slate-800">{p.name}</span>
+                                <span className="text-xs font-bold text-slate-800 dark:text-white">{p.name}</span>
                                 <span className="bg-[#0057FF]/10 text-[#0057FF] text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">Pharmacy</span>
                               </div>
                               <span className="text-[10px] text-slate-500 block truncate max-w-[280px]">Location: {p.address}</span>
@@ -326,7 +326,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
               </div>
 
               {/* Fraud Alerts Feed (col 4) */}
-              <div className="lg:col-span-4 bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+              <div className="lg:col-span-4 bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                 <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Fraud Detection Alerts</h3>
                   {fraudFlags.length > 0 && <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse" />}
@@ -353,7 +353,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                               isCritical ? 'bg-[#EF4444]/20 text-[#EF4444]' : 'bg-[#F59E0B]/20 text-[#F59E0B]'
                             }`}>{isCritical ? 'CRITICAL' : 'WARNING'}</span>
                           </div>
-                          <p className="text-[10px] text-slate-600 leading-relaxed font-medium">{flag.details}</p>
+                          <p className="text-[10px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium">{flag.details}</p>
                           <button
                             onClick={() => setToast({ msg: 'Account flagged for suspension. Manual review required.', type: 'error' })}
                             className="mt-2.5 w-full bg-[#EF4444] hover:bg-[#EF4444]/80 text-white font-bold text-[9px] py-1.5 rounded-lg transition-all shadow-xs cursor-pointer uppercase tracking-wider flex items-center justify-center space-x-1"
@@ -375,8 +375,8 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: User Management */}
         {activeTab === 'User Management' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-slate-800">User Directory</h3>
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">User Directory</h3>
             <p className="text-xs text-slate-400">Manage registered pharmacist and pharmacy owner accounts.</p>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
@@ -395,7 +395,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                     { email: 'pharmacist2@pharma.com', status: 'suspended', date: '2026-05-18' },
                   ].map((user, idx) => (
                     <tr key={idx} className="hover:bg-slate-50/50">
-                      <td className="py-3 font-semibold text-slate-800">{user.email}</td>
+                      <td className="py-3 font-semibold text-slate-800 dark:text-white">{user.email}</td>
                       <td className="py-3">
                         <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
                           user.status === 'active' ? 'bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20' : 'bg-[#EF4444]/10 text-[#EF4444] border border-[#EF4444]/20'
@@ -415,8 +415,8 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Pharmacy Management */}
         {activeTab === 'Pharmacy Management' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-slate-800">Pharmacy Registry</h3>
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Pharmacy Registry</h3>
             <p className="text-xs text-slate-400">Verify and monitor registered pharmacy storefronts and licenses.</p>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
@@ -436,9 +436,9 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                   ) : (
                     pharmacies.map((p, idx) => (
                       <tr key={idx} className="hover:bg-slate-50/50">
-                        <td className="py-3 font-semibold text-slate-800">
+                        <td className="py-3 font-semibold text-slate-800 dark:text-white">
                           <div>
-                            <span className="block font-bold text-slate-800">{p.name}</span>
+                            <span className="block font-bold text-slate-800 dark:text-white">{p.name}</span>
                             <span className="text-[10px] text-slate-400 font-mono block">Owner: {p.owner_email}</span>
                           </div>
                         </td>
@@ -488,8 +488,8 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
           <div className="grid lg:grid-cols-2 gap-6">
             
             {/* Pending Approvals */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white flex items-center space-x-2">
                 <FileCheck size={16} className="text-[#F59E0B]" />
                 <span>Pending License Approvals</span>
               </h3>
@@ -498,9 +498,9 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                   <p className="text-slate-400 text-xs text-center py-12">No pending verification requests.</p>
                 ) : (
                   pendingLicenses.map((l, idx) => (
-                    <div key={idx} className="p-4 border border-slate-100 rounded-xl hover:border-slate-200 transition-all flex items-center justify-between">
+                    <div key={idx} className="p-4 border border-slate-100 rounded-xl hover:border-slate-200 dark:border-darkBorder transition-all flex items-center justify-between">
                       <div className="space-y-1">
-                        <span className="text-xs font-bold text-slate-800 block">{l.name}</span>
+                        <span className="text-xs font-bold text-slate-800 dark:text-white block">{l.name}</span>
                         <span className="text-[10px] text-slate-500 font-mono block">Lic No: {l.license_number} ({l.license_state})</span>
                         <span className="text-[10px] text-slate-400 block font-medium">Expires: {l.expiration_date}</span>
                       </div>
@@ -527,8 +527,8 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
             </div>
 
             {/* Verified Directory */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white flex items-center space-x-2">
                 <CheckCircle2 size={16} className="text-[#22C55E]" />
                 <span>Verified License Directory</span>
               </h3>
@@ -539,7 +539,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                   verifiedLicenses.map((l, idx) => (
                     <div key={idx} className="p-3.5 border border-slate-100 rounded-xl flex items-center justify-between hover:bg-slate-50/40 transition-all">
                       <div>
-                        <span className="text-xs font-bold text-slate-800 block">{l.name}</span>
+                        <span className="text-xs font-bold text-slate-800 dark:text-white block">{l.name}</span>
                         <span className="text-[10px] text-slate-500 font-mono block">Lic No: {l.license_number} ({l.license_state})</span>
                       </div>
                       <span className="bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20 text-[9px] font-bold px-2 py-0.5 rounded-full">
@@ -556,10 +556,10 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Fraud Detection */}
         {activeTab === 'Fraud Detection' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-5">
             <div className="flex items-center space-x-2 border-b border-slate-100 pb-3">
               <ShieldAlert size={18} className="text-[#EF4444]" />
-              <h3 className="text-sm font-bold text-slate-800">Fraud Detection Logs</h3>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Fraud Detection Logs</h3>
             </div>
             <div className="space-y-4 max-h-[550px] overflow-y-auto pr-1">
               {fraudFlags.length === 0 ? (
@@ -568,10 +568,10 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                 fraudFlags.map((flag, idx) => (
                   <div key={idx} className="p-4 border border-[#EF4444]/20 bg-[#EF4444]/5 rounded-xl space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-800">{flag.type.replace(/_/g, ' ')}</span>
+                      <span className="text-xs font-bold text-slate-800 dark:text-white">{flag.type.replace(/_/g, ' ')}</span>
                       <span className="bg-[#EF4444]/20 text-[#EF4444] text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider">{flag.severity}</span>
                     </div>
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium">{flag.details}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">{flag.details}</p>
                     <div className="pt-2 border-t border-[#EF4444]/10 flex items-center justify-between text-[11px]">
                       <span className="text-slate-500 font-semibold">Action: {flag.action_required}</span>
                       <button onClick={fetchAdminData} className="text-[#EF4444] hover:text-[#EF4444]/80 font-bold cursor-pointer">Dispatch Audit</button>
@@ -610,28 +610,28 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Settings */}
         {activeTab === 'Settings' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-6">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-6">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">System Platform Settings</h3>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">System Platform Settings</h3>
               <p className="text-xs text-slate-400">Configure global matching thresholds and scheduling variables.</p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700">
+            <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700 dark:text-slate-200">
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Monte-Carlo Iterations</label>
-                <input type="number" defaultValue={1000} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Monte-Carlo Iterations</label>
+                <input type="number" defaultValue={1000} className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Default Emergency Rate Bonus (₹/hr)</label>
-                <input type="number" defaultValue={15} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Default Emergency Rate Bonus (₹/hr)</label>
+                <input type="number" defaultValue={15} className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">AI Matching Proximity Radius (km)</label>
-                <input type="number" defaultValue={35} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">AI Matching Proximity Radius (km)</label>
+                <input type="number" defaultValue={35} className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Platform Security Level</label>
-                <select className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Platform Security Level</label>
+                <select className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
                   <option>Standard Verification Audit</option>
                   <option>Strict Credentials Verification</option>
                 </select>

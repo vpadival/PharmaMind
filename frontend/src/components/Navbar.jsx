@@ -3,9 +3,10 @@ import {
   LayoutDashboard, Users, Store, UserCheck, ShieldCheck,
   ShieldAlert, BarChart3, Terminal, Bell, Settings, LogOut,
   Briefcase, Calendar, DollarSign, Clock, FileText, User,
-  Award, MessageSquare, Shield, ChevronLeft, ChevronRight, Activity, Pill
+  Award, MessageSquare, Shield, ChevronLeft, ChevronRight, Activity, Pill, Sun, Moon
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../contexts/ThemeContext';
 
 const menuConfigs = {
   owner: [
@@ -64,6 +65,7 @@ export default function Navbar({ user, activeTab, setActiveTab, onLogout, API_BA
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [showNotif, setShowNotif] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const rc = roleConfig[user.role] || roleConfig.owner;
   const menuItems = menuConfigs[user.role] || menuConfigs.owner;
@@ -227,6 +229,21 @@ export default function Navbar({ user, activeTab, setActiveTab, onLogout, API_BA
               </div>
             )}
           </div>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className={`w-full flex items-center rounded-xl px-3 py-2 text-slate-400 hover:text-white hover:bg-[#00B7FF]/10 border border-transparent hover:border-[#00B7FF]/20 text-xs font-semibold transition-all duration-200 cursor-pointer group ${
+              isCollapsed ? 'justify-center' : 'space-x-3'
+            }`}
+          >
+            {theme === 'dark' ? (
+              <Sun size={14} className="flex-shrink-0 group-hover:text-yellow-400 transition-colors" />
+            ) : (
+              <Moon size={14} className="flex-shrink-0 group-hover:text-blue-400 transition-colors" />
+            )}
+            {!isCollapsed && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
+          </button>
 
           {/* Sign Out Button */}
           <button

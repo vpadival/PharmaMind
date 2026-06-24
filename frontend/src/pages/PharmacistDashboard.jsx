@@ -7,8 +7,8 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
-const INPUT_CLS = `w-full bg-slate-50 border border-slate-200/80 focus:border-[#0057FF] focus:bg-white 
-  text-slate-800 placeholder:text-slate-400 rounded-xl text-[12px] outline-none 
+const INPUT_CLS = `w-full bg-slate-50 border border-slate-200 dark:border-darkBorder/80 focus:border-[#0057FF] focus:bg-white dark:bg-darkCard 
+  text-slate-800 dark:text-white placeholder:text-slate-400 rounded-xl text-[12px] outline-none 
   focus:ring-2 focus:ring-[#0057FF]/15 transition-all duration-200 px-3.5 py-2.5`;
 
 export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
@@ -145,22 +145,22 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
   }));
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-800 min-h-screen select-none animate-scale-in">
+    <div className="bg-[#F8FAFC] dark:bg-darkBg text-slate-800 dark:text-white min-h-screen select-none animate-scale-in">
       
       {/* Search Header */}
-      <div className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-xs">
+      <div className="bg-white dark:bg-darkCard border-b border-slate-200 dark:border-darkBorder px-8 py-4 flex items-center justify-between shadow-xs">
         <div className="relative w-72">
           <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="Search anything..."
-            className="w-full bg-slate-50 border border-slate-200/80 focus:border-[#0057FF] focus:bg-white rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 outline-none transition-all"
+            className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder/80 focus:border-[#0057FF] focus:bg-white dark:bg-darkCard rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 dark:text-white outline-none transition-all"
           />
         </div>
         <div className="flex items-center space-x-4">
           <button 
             onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
-            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer"
+            className="p-2 text-slate-400 hover:text-slate-600 dark:text-slate-300 hover:bg-slate-100 rounded-xl relative cursor-pointer"
           >
             <Bell size={16} />
             {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF] animate-pulse" />}
@@ -171,7 +171,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               {initials}
             </div>
             <div>
-              <span className="text-xs font-bold text-slate-800 block">{profile?.name || user?.pharmacist?.name || 'Pharmacist'}</span>
+              <span className="text-xs font-bold text-slate-800 dark:text-white block">{profile?.name || user?.pharmacist?.name || 'Pharmacist'}</span>
               <span className="text-[9px] font-bold text-slate-400 block uppercase tracking-wider">Licensed Pharmacist</span>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                 <Sparkles size={16} className="animate-pulse" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">Workforce Retention Incentive Active</h4>
+                <h4 className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">Workforce Retention Incentive Active</h4>
                 <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
                   You qualify for a <strong className="text-[#22C55E]">+₹10/hr bonus incentive</strong> on emergency shifts this week.
                 </p>
@@ -205,9 +205,9 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
           <div className="space-y-6">
             
             {/* Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200/60">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-darkBorder/60">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight">Welcome, {profile?.name || user?.pharmacist?.name || 'Doctor'}!</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Welcome, {profile?.name || user?.pharmacist?.name || 'Doctor'}!</h2>
                 <p className="text-slate-400 text-xs mt-1">Manage your digital passport, set availability, request leaves, and secure shift bookings.</p>
               </div>
             </div>
@@ -216,11 +216,11 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               
               {/* Trust Score */}
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Trust Score</span>
                   <div className="flex items-baseline space-x-0.5 mt-1">
-                    <span className="text-2xl font-black text-slate-900 tracking-tight">{profile?.trust_score ?? '—'}</span>
+                    <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{profile?.trust_score ?? '—'}</span>
                     <span className="text-[10px] text-slate-400 font-bold">/100</span>
                   </div>
                   <span className="text-[10px] font-bold text-[#22C55E] mt-1.5 block">Excellent Stability</span>
@@ -231,10 +231,10 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               </div>
  
               {/* Total Earnings */}
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Total Earnings</span>
-                  <span className="text-2xl font-black text-slate-900 tracking-tight block mt-1">₹ 48,750</span>
+                  <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block mt-1">₹ 48,750</span>
                   <div className="flex items-center space-x-1.5 mt-1">
                     <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#22C55E]/10 text-[#22C55E]">+12%</span>
                     <span className="text-[10px] text-slate-400">this month</span>
@@ -246,10 +246,10 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               </div>
  
               {/* Completed Shifts */}
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Completed Shifts</span>
-                  <span className="text-2xl font-black text-slate-900 tracking-tight block mt-1">36</span>
+                  <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block mt-1">36</span>
                   <div className="flex items-center space-x-1.5 mt-1">
                     <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#0057FF]/10 text-[#0057FF]">+8</span>
                     <span className="text-[10px] text-slate-400">this month</span>
@@ -261,11 +261,11 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               </div>
  
               {/* Ratings */}
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-[#00B7FF]/50 transition-all duration-300">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Ratings</span>
                   <div className="flex items-baseline space-x-0.5 mt-1">
-                    <span className="text-2xl font-black text-slate-900 tracking-tight">{profile?.rating ?? '—'}</span>
+                    <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{profile?.rating ?? '—'}</span>
                     <span className="text-[10px] text-slate-400 font-bold">/5.0</span>
                   </div>
                   <div className="flex items-center text-amber-500 mt-1.5">
@@ -290,7 +290,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               <div className="lg:col-span-7 space-y-6">
                 
                 {/* Available Jobs Marketplace */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
                     <div>
                       <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Available Jobs Marketplace</h3>
@@ -306,7 +306,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                           placeholder="Filter Pharmacy..."
                           value={searchQuery}
                           onChange={e => setSearchQuery(e.target.value)}
-                          className="bg-slate-50 border border-slate-200 text-slate-800 pl-7 pr-2.5 py-1.5 rounded-lg text-[10px] outline-none w-32 focus:border-[#0057FF]"
+                          className="bg-slate-50 border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white pl-7 pr-2.5 py-1.5 rounded-lg text-[10px] outline-none w-32 focus:border-[#0057FF]"
                         />
                       </div>
                       <input
@@ -314,7 +314,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         placeholder="Min Rate..."
                         value={rateFilter}
                         onChange={e => setRateFilter(e.target.value)}
-                        className="bg-slate-50 border border-slate-200 text-slate-800 px-2.5 py-1.5 rounded-lg text-[10px] outline-none w-20 focus:border-[#0057FF]"
+                        className="bg-slate-50 border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white px-2.5 py-1.5 rounded-lg text-[10px] outline-none w-20 focus:border-[#0057FF]"
                       />
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         className={`px-3 py-1 rounded-full text-[10px] font-bold border transition-all cursor-pointer ${
                           activeFilterPill === pill.id
                             ? 'bg-[#00B7FF] text-white border-[#00B7FF] shadow-xs'
-                            : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-800'
+                            : 'bg-slate-50 border-slate-200 dark:border-darkBorder text-slate-500 hover:text-slate-800 dark:text-white'
                         }`}
                       >
                         {pill.label}
@@ -351,9 +351,9 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                           <span>Emergency High-Priority Coverage</span>
                         </span>
                         {emergencyShifts.map((s, idx) => (
-                          <div key={idx} className="bg-white border border-[#EF4444]/20 p-3.5 rounded-lg flex items-center justify-between hover:shadow-xs transition-all">
+                          <div key={idx} className="bg-white dark:bg-darkCard border border-[#EF4444]/20 p-3.5 rounded-lg flex items-center justify-between hover:shadow-xs transition-all">
                             <div>
-                              <span className="text-xs font-bold text-slate-800 block">{s.title}</span>
+                              <span className="text-xs font-bold text-slate-800 dark:text-white block">{s.title}</span>
                               <span className="text-[10px] font-semibold text-[#EF4444] block mt-0.5">{s.pharmacy_name}</span>
                               <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                             </div>
@@ -378,7 +378,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                       regularShifts.map((s, idx) => (
                         <div key={idx} className="p-3.5 border border-slate-100 hover:border-[#00B7FF]/50 rounded-xl flex items-center justify-between transition-all">
                           <div>
-                            <span className="text-xs font-bold text-slate-800 block">{s.title}</span>
+                            <span className="text-xs font-bold text-slate-800 dark:text-white block">{s.title}</span>
                             <span className="text-[10px] font-semibold text-slate-500 block mt-0.5">{s.pharmacy_name}</span>
                             <div className="flex items-center space-x-2 text-[9px] text-slate-400 mt-1 font-medium">
                               <span className="flex items-center space-x-0.5"><Calendar size={9} /><span>{s.date}</span></span>
@@ -386,7 +386,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                             </div>
                           </div>
                           <div className="text-right space-y-2 flex-shrink-0 ml-4">
-                            <span className="text-xs font-black text-slate-800 block">₹{s.hourly_rate}/hr</span>
+                            <span className="text-xs font-black text-slate-800 dark:text-white block">₹{s.hourly_rate}/hr</span>
                             <button
                               onClick={() => handleAcceptShift(s.id)}
                               className="bg-[#0057FF]/5 hover:bg-[#0057FF]/10 text-[#0057FF] border border-[#0057FF]/10 font-bold text-[9px] px-3 py-1.5 rounded-lg cursor-pointer transition-all"
@@ -406,7 +406,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               <div className="lg:col-span-5 space-y-6">
                 
                 {/* My Schedule Calendar Card */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">My Schedule (May 2024)</h3>
                     <span className="text-[10px] text-slate-400 font-semibold">4 Shifts Scheduled</span>
@@ -425,12 +425,12 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                             ? 'bg-[#00B7FF] text-white shadow-xs font-bold'
                             : item.isToday
                             ? 'bg-[#0057FF]/10 border border-[#0057FF]/20 text-[#0057FF]'
-                            : 'text-slate-600 hover:bg-slate-50'
+                            : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50'
                         }`}
                       >
                         <span>{item.day}</span>
                         {item.hasShift && (
-                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white animate-pulse" />
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white dark:bg-darkCard animate-pulse" />
                         )}
                       </div>
                     ))}
@@ -438,7 +438,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                 </div>
 
                 {/* Earnings Line Chart */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Earnings Overview</h3>
                   <div className="h-40">
                     <ResponsiveContainer width="100%" height="100%">
@@ -465,16 +465,16 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
           <div className="grid lg:grid-cols-2 gap-6">
             
             {/* Confirmed Roster */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800">My Confirmed Bookings</h3>
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">My Confirmed Bookings</h3>
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
                 {myShifts.filter(s => s.status === 'matched').length === 0 ? (
                   <p className="text-slate-400 text-xs text-center py-12">No confirmed shifts scheduled.</p>
                 ) : (
                   myShifts.filter(s => s.status === 'matched').map((s, idx) => (
-                    <div key={idx} className="p-4 border-l-4 border-l-[#22C55E] border border-slate-100 rounded-xl hover:border-slate-200 transition-all flex items-center justify-between">
+                    <div key={idx} className="p-4 border-l-4 border-l-[#22C55E] border border-slate-100 rounded-xl hover:border-slate-200 dark:border-darkBorder transition-all flex items-center justify-between">
                       <div>
-                        <span className="text-xs font-bold text-slate-800 block">{s.title}</span>
+                        <span className="text-xs font-bold text-slate-800 dark:text-white block">{s.title}</span>
                         <span className="text-[10px] text-slate-400 font-semibold block mt-0.5">{s.pharmacy_name}</span>
                         <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                       </div>
@@ -494,8 +494,8 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             </div>
 
             {/* Pending Requests */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800">Pending Booking Requests</h3>
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Pending Booking Requests</h3>
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
                 {myShifts.filter(s => s.status === 'applied').length === 0 ? (
                   <p className="text-slate-400 text-xs text-center py-12">No pending booking requests.</p>
@@ -503,12 +503,12 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                   myShifts.filter(s => s.status === 'applied').map((s, idx) => (
                     <div key={idx} className="p-4 border border-slate-100 rounded-xl flex items-center justify-between">
                       <div>
-                        <span className="text-xs font-bold text-slate-800 block">{s.title}</span>
+                        <span className="text-xs font-bold text-slate-800 dark:text-white block">{s.title}</span>
                         <span className="text-[10px] text-slate-500 block mt-0.5">{s.pharmacy_name}</span>
                         <span className="text-[9px] text-slate-400 block mt-0.5">{s.date} · {s.start_time} - {s.end_time}</span>
                       </div>
                       <div className="text-right space-y-1.5">
-                        <span className="text-xs font-black text-slate-800 block">₹{s.hourly_rate}/hr</span>
+                        <span className="text-xs font-black text-slate-800 dark:text-white block">₹{s.hourly_rate}/hr</span>
                         <span className="bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20 text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider block">Applied</span>
                       </div>
                     </div>
@@ -522,10 +522,10 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Availability Calendar */}
         {activeTab === 'Availability Calendar' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-5">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
-                <h3 className="text-sm font-bold text-slate-800">My Standard Weekly Availability</h3>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-white">My Standard Weekly Availability</h3>
                 <p className="text-xs text-slate-400">Specify which weekdays you are typically available for shift dispatches.</p>
               </div>
               <button
@@ -545,7 +545,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                   className={`py-3.5 rounded-xl text-xs font-bold border transition-all ${
                     active
                       ? 'bg-[#00B7FF] text-white border-[#00B7FF] shadow-xs'
-                      : 'bg-slate-50 border-slate-200 text-slate-400 hover:text-slate-600'
+                      : 'bg-slate-50 border-slate-200 dark:border-darkBorder text-slate-400 hover:text-slate-600 dark:text-slate-300'
                   } ${editingAvail ? 'cursor-pointer' : 'cursor-default'}`}
                 >
                   {day}
@@ -560,25 +560,25 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
           <div className="grid lg:grid-cols-2 gap-6">
             
             {/* Leave request form */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800 flex items-center space-x-2">
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white flex items-center space-x-2">
                 <FileText size={16} className="text-[#0057FF]" />
                 <span>Submit Leave/Absence Request</span>
               </h3>
-              <form onSubmit={handleRequestLeave} className="space-y-4 text-xs text-slate-700">
+              <form onSubmit={handleRequestLeave} className="space-y-4 text-xs text-slate-700 dark:text-slate-200">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <label className="font-bold text-slate-600">Start Date</label>
+                    <label className="font-bold text-slate-600 dark:text-slate-300">Start Date</label>
                     <input type="date" required value={leaveStart} onChange={e => setLeaveStart(e.target.value)} className={INPUT_CLS} />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="font-bold text-slate-600">End Date</label>
+                    <label className="font-bold text-slate-600 dark:text-slate-300">End Date</label>
                     <input type="date" required value={leaveEnd} onChange={e => setLeaveEnd(e.target.value)} className={INPUT_CLS} />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="font-bold text-slate-600">Absence Reason</label>
+                  <label className="font-bold text-slate-600 dark:text-slate-300">Absence Reason</label>
                   <textarea
                     required
                     placeholder="Attending clinical conference, vacation, etc."
@@ -600,7 +600,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               {leaveImpact !== null && (
                 <div className="bg-[#00B7FF]/5 border border-[#00B7FF]/20 p-4 rounded-xl space-y-2.5 animate-fade-up">
                   <span className="text-[10px] font-black uppercase text-[#00B7FF] tracking-wider block">AI Impact Analysis</span>
-                  <div className="space-y-1.5 text-xs text-slate-600">
+                  <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                     <div className="flex justify-between">
                       <span>Closure Risk Increase:</span>
                       <span className={`font-bold ${leaveImpact > 40 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>+{leaveImpact}%</span>
@@ -615,8 +615,8 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             </div>
 
             {/* Leave History */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-              <h3 className="text-sm font-bold text-slate-800">Leave History Logs</h3>
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Leave History Logs</h3>
               <div className="space-y-3 max-h-[500px] overflow-y-auto pr-1">
                 {leaves.length === 0 ? (
                   <p className="text-slate-400 text-xs text-center py-12">No leave logs recorded.</p>
@@ -624,7 +624,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                   leaves.map((l, idx) => (
                     <div key={idx} className="p-4 border border-slate-100 rounded-xl flex items-center justify-between">
                       <div>
-                        <span className="text-xs font-bold text-slate-800 block">Absence: {l.reason}</span>
+                        <span className="text-xs font-bold text-slate-800 dark:text-white block">Absence: {l.reason}</span>
                         <span className="text-[10px] text-slate-400 block mt-0.5">{l.start_date} to {l.end_date}</span>
                       </div>
                       <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
@@ -641,33 +641,33 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Profile / Earnings / Scores / Settings */}
         {activeTab === 'My Profile' && profile && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs max-w-xl space-y-6">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs max-w-xl space-y-6">
             <div className="flex items-center space-x-4 border-b border-slate-100 pb-4">
               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00B7FF] to-[#7C3AED] text-white font-black text-lg flex items-center justify-center shadow-lg shadow-[#7C3AED]/20">
                 {initials}
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-800">{profile.name}</h3>
+                <h3 className="text-base font-bold text-slate-800 dark:text-white">{profile.name}</h3>
                 <span className="bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20 text-[9px] font-bold px-2.5 py-0.5 rounded-full block w-max mt-1 uppercase tracking-wider">License Verified</span>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 text-xs text-slate-600">
+            <div className="grid grid-cols-2 gap-4 text-xs text-slate-600 dark:text-slate-300">
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">License Reference</span>
-                <span className="font-bold text-slate-800 block font-mono">{profile.license_number}</span>
+                <span className="font-bold text-slate-800 dark:text-white block font-mono">{profile.license_number}</span>
               </div>
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">License State</span>
-                <span className="font-bold text-slate-800 block">{profile.license_state}</span>
+                <span className="font-bold text-slate-800 dark:text-white block">{profile.license_state}</span>
               </div>
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Experience</span>
-                <span className="font-bold text-slate-800 block">{profile.experience_years} Years</span>
+                <span className="font-bold text-slate-800 dark:text-white block">{profile.experience_years} Years</span>
               </div>
               <div className="space-y-1">
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Specialties</span>
-                <span className="font-bold text-slate-800 block">{profile.skills || 'Clinical Pharmacy'}</span>
+                <span className="font-bold text-slate-800 dark:text-white block">{profile.skills || 'Clinical Pharmacy'}</span>
               </div>
             </div>
           </div>
@@ -693,28 +693,28 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                   <p className="text-sm text-slate-400 mb-6 max-w-xl leading-relaxed">Your Trust Score represents your reliability, punctuality, and performance. A score above 85 unlocks premium shifts, auto-matching, and up to 15% bonus incentives.</p>
                   
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="bg-white dark:bg-darkCard/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-xs font-bold text-slate-300">Punctuality</span>
                         <span className="text-xs font-black text-[#22C55E]">98%</span>
                       </div>
                       <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#22C55E] w-[98%]" /></div>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="bg-white dark:bg-darkCard/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-xs font-bold text-slate-300">Cancellation Rate</span>
                         <span className="text-xs font-black text-[#22C55E]">0.5%</span>
                       </div>
                       <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#22C55E] w-[99.5%]" /></div>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="bg-white dark:bg-darkCard/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-xs font-bold text-slate-300">Patient Ratings</span>
                         <span className="text-xs font-black text-[#00B7FF]">{profile?.rating || '4.9'}</span>
                       </div>
                       <div className="w-full h-1.5 bg-black/40 rounded-full overflow-hidden"><div className="h-full bg-[#00B7FF] w-[96%]" /></div>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+                    <div className="bg-white dark:bg-darkCard/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-xs font-bold text-slate-300">Profile Completeness</span>
                         <span className="text-xs font-black text-[#7C3AED]">100%</span>
@@ -731,9 +731,9 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
         {/* Tab Panel: Certificates */}
         {activeTab === 'Certificates' && (
           <div className="space-y-6">
-            <div className="flex justify-between items-end pb-4 border-b border-slate-200">
+            <div className="flex justify-between items-end pb-4 border-b border-slate-200 dark:border-darkBorder">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight">Digital Credential Passport</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Digital Credential Passport</h2>
                 <p className="text-slate-500 text-xs mt-1">Verified blockchain-backed credentials and state licenses.</p>
               </div>
               <button className="bg-[#0057FF] hover:bg-[#00B7FF] text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-md shadow-[#0057FF]/20 flex items-center gap-2">
@@ -743,43 +743,43 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             
             <div className="grid md:grid-cols-2 gap-6">
               {/* License Card */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#22C55E]/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-all" />
                 <div className="flex justify-between items-start mb-4">
                   <div className="p-3 bg-[#22C55E]/10 text-[#22C55E] rounded-xl"><Award size={24} /></div>
                   <span className="bg-[#22C55E] text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm shadow-[#22C55E]/30">Active & Verified</span>
                 </div>
-                <h4 className="text-lg font-black text-slate-800 mb-1">State Pharmacy License</h4>
+                <h4 className="text-lg font-black text-slate-800 dark:text-white mb-1">State Pharmacy License</h4>
                 <p className="text-sm text-slate-500 mb-4">Board of Pharmacy • State of {profile?.license_state || 'Operation'}</p>
                 <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">License No.</span>
-                    <span className="font-mono text-sm font-bold text-slate-700">{profile?.license_number || 'PH-XXXXX'}</span>
+                    <span className="font-mono text-sm font-bold text-slate-700 dark:text-slate-200">{profile?.license_number || 'PH-XXXXX'}</span>
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Expires</span>
-                    <span className="text-xs font-bold text-slate-700">Dec 2026</span>
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-200">Dec 2026</span>
                   </div>
                 </div>
               </div>
               
               {/* Immunization Card */}
-              <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+              <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#00B7FF]/20 to-transparent rounded-bl-full pointer-events-none opacity-50 group-hover:opacity-100 transition-all" />
                 <div className="flex justify-between items-start mb-4">
                   <div className="p-3 bg-[#00B7FF]/10 text-[#00B7FF] rounded-xl"><Shield size={24} /></div>
                   <span className="bg-[#00B7FF] text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm shadow-[#00B7FF]/30">Verified</span>
                 </div>
-                <h4 className="text-lg font-black text-slate-800 mb-1">Immunization Certification</h4>
+                <h4 className="text-lg font-black text-slate-800 dark:text-white mb-1">Immunization Certification</h4>
                 <p className="text-sm text-slate-500 mb-4">APhA Pharmacy-Based Immunization Delivery</p>
                 <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Certificate ID</span>
-                    <span className="font-mono text-sm font-bold text-slate-700">IMZ-99281-A</span>
+                    <span className="font-mono text-sm font-bold text-slate-700 dark:text-slate-200">IMZ-99281-A</span>
                   </div>
                   <div className="text-right">
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Completed</span>
-                    <span className="text-xs font-bold text-slate-700">Aug 2023</span>
+                    <span className="text-xs font-bold text-slate-700 dark:text-slate-200">Aug 2023</span>
                   </div>
                 </div>
               </div>
@@ -790,9 +790,9 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
         {/* Tab Panel: My Earnings */}
         {activeTab === 'My Earnings' && (
           <div className="space-y-6">
-            <div className="flex justify-between items-end pb-4 border-b border-slate-200">
+            <div className="flex justify-between items-end pb-4 border-b border-slate-200 dark:border-darkBorder">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight">Financial Overview</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Financial Overview</h2>
                 <p className="text-slate-500 text-xs mt-1">Track your completed shifts, payouts, and bonus incentives.</p>
               </div>
               <div className="text-right">
@@ -802,8 +802,8 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             </div>
 
             {/* Earnings Line Chart */}
-            <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xs h-64">
-              <h3 className="text-sm font-bold text-slate-800 mb-4">Earnings Trajectory (Last 6 Months)</h3>
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-6 shadow-xs h-64">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-4">Earnings Trajectory (Last 6 Months)</h3>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={earningsData} margin={{ top: 5, right: 5, left: -20, bottom: 20 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#F1F5F9" />
@@ -816,8 +816,8 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             </div>
 
             {/* Recent Transactions */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
-              <h3 className="text-sm font-bold text-slate-800 mb-4">Recent Payouts</h3>
+            <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs">
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-4">Recent Payouts</h3>
               <div className="space-y-3">
                 {[
                   { date: 'May 15, 2024', desc: 'Direct Deposit - Weekly Shift Payout', amount: '+₹1,850.00' },
@@ -830,7 +830,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         <TrendingUp size={18} />
                       </div>
                       <div>
-                        <span className="font-bold text-sm text-slate-800 block">{t.desc}</span>
+                        <span className="font-bold text-sm text-slate-800 dark:text-white block">{t.desc}</span>
                         <span className="text-xs text-slate-400">{t.date}</span>
                       </div>
                     </div>
@@ -844,24 +844,24 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Messages */}
         {activeTab === 'Messages' && (
-          <div className="h-[600px] bg-white border border-slate-200 rounded-2xl shadow-xs flex overflow-hidden">
+          <div className="h-[600px] bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl shadow-xs flex overflow-hidden">
             {/* Sidebar List */}
-            <div className="w-1/3 border-r border-slate-200 flex flex-col">
-              <div className="p-4 border-b border-slate-200 bg-slate-50">
+            <div className="w-1/3 border-r border-slate-200 dark:border-darkBorder flex flex-col">
+              <div className="p-4 border-b border-slate-200 dark:border-darkBorder bg-slate-50">
                 <input type="text" placeholder="Search messages..." className={INPUT_CLS + " w-full"} />
               </div>
               <div className="flex-1 overflow-y-auto">
                 <div className="p-4 border-b border-slate-100 bg-[#0057FF]/5 cursor-pointer relative">
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#0057FF]" />
                   <div className="flex justify-between items-start mb-1">
-                    <span className="font-bold text-sm text-slate-800">Walgreens #1024</span>
+                    <span className="font-bold text-sm text-slate-800 dark:text-white">Walgreens #1024</span>
                     <span className="text-[10px] font-bold text-[#0057FF]">10:42 AM</span>
                   </div>
                   <p className="text-xs text-slate-500 truncate">Are you available to come in 30 mins early?</p>
                 </div>
                 <div className="p-4 border-b border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors">
                   <div className="flex justify-between items-start mb-1">
-                    <span className="font-bold text-sm text-slate-800">CVS Pharmacy North</span>
+                    <span className="font-bold text-sm text-slate-800 dark:text-white">CVS Pharmacy North</span>
                     <span className="text-[10px] text-slate-400">Yesterday</span>
                   </div>
                   <p className="text-xs text-slate-500 truncate">Thank you for covering the shift!</p>
@@ -870,11 +870,11 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
             </div>
             {/* Chat Area */}
             <div className="flex-1 flex flex-col bg-slate-50/50">
-              <div className="p-4 border-b border-slate-200 bg-white flex justify-between items-center">
+              <div className="p-4 border-b border-slate-200 dark:border-darkBorder bg-white dark:bg-darkCard flex justify-between items-center">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0057FF] to-[#00B7FF] flex items-center justify-center text-white font-bold">W</div>
                   <div>
-                    <h3 className="font-bold text-slate-800 text-sm">Walgreens #1024</h3>
+                    <h3 className="font-bold text-slate-800 dark:text-white text-sm">Walgreens #1024</h3>
                     <span className="text-[10px] text-[#22C55E] flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] block" /> Online
                     </span>
@@ -883,7 +883,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
               </div>
               <div className="flex-1 p-6 overflow-y-auto flex flex-col gap-4">
                 <div className="self-start max-w-[70%]">
-                  <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-sm shadow-sm text-sm text-slate-700">
+                  <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder p-3 rounded-2xl rounded-tl-sm shadow-sm text-sm text-slate-700 dark:text-slate-200">
                     Hi Doctor, are you available to come in 30 mins early for tomorrow's shift? We have a large queue built up.
                   </div>
                   <span className="text-[10px] text-slate-400 mt-1 ml-1 block">10:42 AM</span>
@@ -895,7 +895,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                   <span className="text-[10px] text-slate-400 mt-1 mr-1 block text-right">10:45 AM</span>
                 </div>
               </div>
-              <div className="p-4 bg-white border-t border-slate-200">
+              <div className="p-4 bg-white dark:bg-darkCard border-t border-slate-200 dark:border-darkBorder">
                 <div className="relative">
                   <input type="text" placeholder="Type your message..." className={INPUT_CLS + " pr-12 rounded-full"} />
                   <button className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#0057FF] text-white flex items-center justify-center hover:bg-[#00B7FF] transition-colors cursor-pointer">
@@ -909,22 +909,22 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
 
         {/* Tab Panel: Settings */}
         {activeTab === 'Settings' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs max-w-xl space-y-6">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs max-w-xl space-y-6">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">Account Preferences</h3>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Account Preferences</h3>
               <p className="text-xs text-slate-400">Configure notifications preferences and dispatch options.</p>
             </div>
-                  <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700">
+                  <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700 dark:text-slate-200">
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Notification Alerts</label>
-                <select className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Notification Alerts</label>
+                <select className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
                   <option>Email & In-App Alerts</option>
                   <option>In-App Alerts Only</option>
                 </select>
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Emergency Dispatch Auto-Opt-In</label>
-                <select className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Emergency Dispatch Auto-Opt-In</label>
+                <select className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
                   <option>Enabled (Receive broadcasts within 20mi)</option>
                   <option>Disabled (Manual search only)</option>
                 </select>

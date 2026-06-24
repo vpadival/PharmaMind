@@ -9,8 +9,8 @@ import {
 } from 'recharts';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const INPUT_CLS = `w-full bg-slate-50 border border-slate-200/80 focus:border-[#0057FF] focus:bg-white 
-  text-slate-800 placeholder:text-slate-400 rounded-xl text-[12px] outline-none 
+const INPUT_CLS = `w-full bg-slate-50 border border-slate-200 dark:border-darkBorder/80 focus:border-[#0057FF] focus:bg-white dark:bg-darkCard 
+  text-slate-800 dark:text-white placeholder:text-slate-400 rounded-xl text-[12px] outline-none 
   focus:ring-2 focus:ring-[#0057FF]/15 transition-all duration-200 px-4 py-2.5`;
 
 const statusBadgeCls = (status) => {
@@ -204,22 +204,22 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
 
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-800 min-h-screen select-none animate-scale-in">
+    <div className="bg-[#F8FAFC] dark:bg-darkBg text-slate-800 dark:text-white min-h-screen select-none animate-scale-in">
       
       {/* Search Header */}
-      <div className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-xs">
+      <div className="bg-white dark:bg-darkCard border-b border-slate-200 dark:border-darkBorder px-8 py-4 flex items-center justify-between shadow-xs">
         <div className="relative w-72">
           <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="Search anything..."
-            className="w-full bg-slate-50 border border-slate-200/80 focus:border-[#0057FF] focus:bg-white rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 outline-none transition-all"
+            className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder/80 focus:border-[#0057FF] focus:bg-white dark:bg-darkCard rounded-xl pl-10 pr-4 py-2 text-xs text-slate-800 dark:text-white outline-none transition-all"
           />
         </div>
         <div className="flex items-center space-x-4">
           <button 
             onClick={() => window.dispatchEvent(new CustomEvent('open-notifications'))}
-            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-xl relative cursor-pointer"
+            className="p-2 text-slate-400 hover:text-slate-600 dark:text-slate-300 hover:bg-slate-100 rounded-xl relative cursor-pointer"
           >
             <Bell size={16} />
             {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#0057FF] animate-pulse" />}
@@ -230,7 +230,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
               {(user?.pharmacy?.name || user?.email || "OW").substring(0, 2).toUpperCase()}
             </div>
             <div>
-              <span className="text-xs font-bold text-slate-800 block">{user?.pharmacy?.name || user?.email || "Owner"}</span>
+              <span className="text-xs font-bold text-slate-800 dark:text-white block">{user?.pharmacy?.name || user?.email || "Owner"}</span>
               <span className="text-[9px] font-bold text-slate-400 block uppercase tracking-wider">Pharmacy Owner</span>
             </div>
           </div>
@@ -245,9 +245,9 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
           <div className="space-y-6">
             
             {/* Greeting Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-200/60">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-3 border-b border-slate-200 dark:border-darkBorder/60">
               <div>
-                <h2 className="text-xl font-black text-slate-900 tracking-tight">Welcome back, {user?.pharmacy?.name || user?.email || "Owner"}!</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Welcome back, {user?.pharmacy?.name || user?.email || "Owner"}!</h2>
                 <p className="text-slate-400 text-xs mt-1">Monitor real-time continuity metrics, run digital twin simulations, and optimize pharmacist schedules.</p>
               </div>
 
@@ -273,11 +273,11 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
             {metrics && (
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {/* Closure Risk */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Closure Risk Score</span>
                     <div className="flex items-baseline space-x-0.5 mt-1">
-                      <span className="text-2xl font-black text-slate-900 tracking-tight">{metrics.closure_risk_score}</span>
+                      <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{metrics.closure_risk_score}</span>
                       <span className="text-[10px] text-slate-400 font-bold">/100</span>
                     </div>
                     <span className={`text-[10px] font-bold mt-1.5 block ${metrics.closure_risk_score > 40 ? 'text-[#EF4444]' : 'text-[#22C55E]'}`}>
@@ -290,10 +290,10 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
  
                 {/* Workforce Health */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Workforce Health</span>
-                    <span className="text-2xl font-black text-slate-900 tracking-tight block mt-1">{metrics.health_score}</span>
+                    <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block mt-1">{metrics.health_score}</span>
                     <span className="text-[10px] font-bold text-[#22C55E] mt-1.5 block">Good / Healthy</span>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[#22C55E]/10 text-[#22C55E]">
@@ -302,10 +302,10 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
  
                 {/* Active Requests */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Active Requests</span>
-                    <span className="text-2xl font-black text-slate-900 tracking-tight block mt-1">{metrics.open_vacancies}</span>
+                    <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block mt-1">{metrics.open_vacancies}</span>
                     <div className="flex items-center space-x-1.5 mt-1">
                       <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#0057FF]/10 text-[#0057FF]">+2</span>
                       <span className="text-[10px] text-slate-400">from yesterday</span>
@@ -317,10 +317,10 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
  
                 {/* Filled Shifts */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Filled Shifts</span>
-                    <span className="text-2xl font-black text-slate-900 tracking-tight block mt-1">28</span>
+                    <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block mt-1">28</span>
                     <div className="flex items-center space-x-1.5 mt-1">
                       <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[#22C55E]/10 text-[#22C55E]">+5</span>
                       <span className="text-[10px] text-slate-400">vs last week</span>
@@ -340,7 +340,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
               <div className="lg:col-span-7 space-y-6">
                 
                 {/* AI Recommended Pharmacists */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">AI Recommended Pharmacists</h3>
                     <span className="text-[10px] text-slate-400 font-semibold">{pharmacists.length} Active Candidates</span>
@@ -358,7 +358,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                             </div>
                             <div>
                               <div className="flex items-center space-x-1.5">
-                                <span className="text-xs font-bold text-slate-800">{ph.name}</span>
+                                <span className="text-xs font-bold text-slate-800 dark:text-white">{ph.name}</span>
                                 <div className="flex items-center text-amber-500">
                                   <Star size={10} fill="currentColor" />
                                   <span className="text-[9px] font-bold ml-0.5">4.8</span>
@@ -380,11 +380,11 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
 
                 {/* Demand Forecast Heatmap */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Demand Forecast (Next 7 Days)</h3>
                     <div className="flex space-x-2 text-[9px] font-bold text-slate-400">
-                      <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-slate-100 border border-slate-200" /><span>Low</span></span>
+                      <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-slate-100 border border-slate-200 dark:border-darkBorder" /><span>Low</span></span>
                       <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-[#00B7FF]" /><span>High</span></span>
                     </div>
                   </div>
@@ -417,7 +417,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
               <div className="lg:col-span-5 space-y-6">
                 
                 {/* Active Shifts Board */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Active Shifts Board</h3>
                     <span className="text-[10px] text-slate-400 font-semibold">{activeShifts.length} Shifts</span>
@@ -428,14 +428,14 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                       <p className="text-slate-400 text-xs text-center py-12">No active shifts on board.</p>
                     ) : (
                       activeShifts.map((s, idx) => (
-                        <div key={idx} className="p-3.5 border border-slate-100 hover:border-slate-200 rounded-xl relative overflow-hidden transition-all">
+                        <div key={idx} className="p-3.5 border border-slate-100 hover:border-slate-200 dark:border-darkBorder rounded-xl relative overflow-hidden transition-all">
                           <div className={`absolute top-0 bottom-0 left-0 w-[3px] ${
                             s.status === 'open' ? 'bg-[#00B7FF]' : s.status === 'applied' ? 'bg-[#F59E0B]' : 'bg-[#22C55E]'
                           }`} />
                           
                           <div className="flex items-start justify-between pl-1">
                             <div>
-                              <span className="text-xs font-bold text-slate-800 block">{s.title}</span>
+                              <span className="text-xs font-bold text-slate-800 dark:text-white block">{s.title}</span>
                               <span className="text-[9px] text-slate-500 block mt-0.5 font-medium">{s.date} · {s.start_time} - {s.end_time}</span>
                             </div>
                             <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full ${statusBadgeCls(s.status)}`}>
@@ -446,7 +446,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                           <div className="flex items-center justify-between border-t border-slate-100 pt-2.5 mt-2.5 pl-1">
                             <div>
                               <span className="text-[9px] text-slate-400 block font-semibold">Rate</span>
-                              <span className="text-xs font-black text-slate-800">₹{s.hourly_rate}/hr</span>
+                              <span className="text-xs font-black text-slate-800 dark:text-white">₹{s.hourly_rate}/hr</span>
                             </div>
  
                             {s.status === 'applied' ? (
@@ -480,7 +480,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
  
                 {/* Continuity Simulator Card */}
-                <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs space-y-4">
                   <div className="flex items-center justify-between pb-2 border-b border-slate-100">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Continuity Simulator</h3>
                     <span className="bg-[#0057FF]/10 text-[#0057FF] text-[8px] font-black px-2 py-0.5 rounded-full">AI Twin</span>
@@ -493,7 +493,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                       { title: 'Low Staff Availability', score: '78 /100', color: 'text-[#EF4444]' },
                     ].map((sim, i) => (
                       <div key={i} className="flex justify-between items-center py-1.5 border-b border-slate-50 last:border-none">
-                        <span className="text-slate-600 font-medium">{sim.title}</span>
+                        <span className="text-slate-600 dark:text-slate-300 font-medium">{sim.title}</span>
                         <div className="text-right">
                           <span className={`font-bold block text-xs ${sim.color}`}>{sim.score}</span>
                         </div>
@@ -501,7 +501,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                     ))}
                     <button
                       onClick={() => setActiveTab && setActiveTab('Simulator')}
-                      className="w-full mt-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 font-bold text-[11px] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-1.5"
+                      className="w-full mt-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 dark:border-darkBorder text-slate-600 dark:text-slate-300 font-bold text-[11px] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-1.5"
                     >
                       <span>Run New Simulation</span>
                     </button>
@@ -514,8 +514,8 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
 
         {/* Tab Panel: User Management */}
         {activeTab === 'User Management' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
-            <h3 className="text-sm font-bold text-slate-800">Pharmacy Staff & Users</h3>
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Pharmacy Staff & Users</h3>
             <p className="text-xs text-slate-400">View roster of associated pharmacists and technicians.</p>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
@@ -530,7 +530,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 <tbody className="divide-y divide-slate-100">
                   {pharmacists.map((ph, idx) => (
                     <tr key={idx} className="hover:bg-slate-50/50">
-                      <td className="py-3 font-bold text-slate-800">{ph.name}</td>
+                      <td className="py-3 font-bold text-slate-800 dark:text-white">{ph.name}</td>
                       <td className="py-3 text-slate-500 font-medium">Pharmacist</td>
                       <td className="py-3 font-bold text-[#0057FF]">{ph.trust_score}%</td>
                       <td className="py-3 text-right">
@@ -546,9 +546,9 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
 
         {/* Tab Panel: Simulator (Monte Carlo Simulator) */}
         {activeTab === 'Continuity Simulator' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-5">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">Monte-Carlo Workforce Simulator</h3>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Monte-Carlo Workforce Simulator</h3>
               <p className="text-xs text-slate-400">Model absences, surges, and leaves to determine closure risk forecasts.</p>
             </div>
                    {simStep === 1 && (
@@ -563,10 +563,10 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                     key={scen.key}
                     onClick={() => { setSimScenario(scen.key); setSimStep(2); }}
                     className={`p-4 border rounded-xl cursor-pointer hover:border-blue-300 transition-all ${
-                      simScenario === scen.key ? 'border-[#0057FF] bg-[#0057FF]/5' : 'border-slate-200 bg-slate-50/30'
+                      simScenario === scen.key ? 'border-[#0057FF] bg-[#0057FF]/5' : 'border-slate-200 dark:border-darkBorder bg-slate-50/30'
                     }`}
                   >
-                    <span className="text-xs font-bold text-slate-800 block">{scen.title}</span>
+                    <span className="text-xs font-bold text-slate-800 dark:text-white block">{scen.title}</span>
                     <span className="text-[10px] text-slate-500 block mt-1">{scen.desc}</span>
                   </div>
                 ))}
@@ -581,7 +581,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                 </div>
                 <div className="space-y-3 text-xs">
                   <div>
-                    <label className="font-bold text-slate-600 block mb-1">Simulation Duration (Days)</label>
+                    <label className="font-bold text-slate-600 dark:text-slate-300 block mb-1">Simulation Duration (Days)</label>
                     <input type="range" min={5} max={14} value={simDuration} onChange={e => setSimDuration(parseInt(e.target.value))} className="w-full accent-[#0057FF]" />
                     <span className="text-[10px] text-slate-500 block mt-0.5">{simDuration} Days</span>
                   </div>
@@ -599,38 +599,38 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
               <div className="space-y-4 text-xs animate-fade-up">
                 {simLoading ? (
                   <div className="py-12 flex flex-col items-center justify-center space-y-4">
-                    <div className="w-10 h-10 border-4 border-slate-200 border-t-[#0057FF] rounded-full animate-spin" />
+                    <div className="w-10 h-10 border-4 border-slate-200 dark:border-darkBorder border-t-[#0057FF] rounded-full animate-spin" />
                     <span className="text-slate-500 font-medium animate-pulse">{simStageText}</span>
                   </div>
                 ) : simResults ? (
                   <div className="space-y-4">
                     <div className="grid grid-cols-3 gap-3">
-                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
+                      <div className="bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-3 text-center">
                         <span className="text-[9px] uppercase font-bold text-slate-400 block">Sim Health</span>
                         <span className="text-lg font-black text-[#22C55E] block mt-1">{simResults.avg_health_score}%</span>
                       </div>
-                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
+                      <div className="bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-3 text-center">
                         <span className="text-[9px] uppercase font-bold text-slate-400 block">Closure Risk</span>
                         <span className="text-lg font-black text-[#EF4444] block mt-1">{simResults.avg_closure_risk_score}%</span>
                       </div>
-                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 text-center">
+                      <div className="bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-3 text-center">
                         <span className="text-[9px] uppercase font-bold text-slate-400 block">Vulnerabilities</span>
                         <span className="text-lg font-black text-[#F59E0B] block mt-1">{simResults.vulnerable_periods.length} Days</span>
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4">
+                    <div className="bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-4">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">Simulation Recommendations</span>
                       <ul className="space-y-2">
                         {simResults.recommendations.map((rec, i) => (
-                          <li key={i} className="text-slate-600 leading-relaxed font-medium list-disc ml-3">{rec.text}</li>
+                          <li key={i} className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium list-disc ml-3">{rec.text}</li>
                         ))}
                       </ul>
                     </div>
 
                     <button
                       onClick={() => { setSimStep(1); setSimResults(null); }}
-                      className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-2.5 rounded-xl transition-all text-center cursor-pointer border border-slate-200"
+                      className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 dark:text-slate-300 font-bold py-2.5 rounded-xl transition-all text-center cursor-pointer border border-slate-200 dark:border-darkBorder"
                     >
                       Reset Simulator
                     </button>
@@ -659,19 +659,19 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
 
         {/* Tab Panel: Settings */}
         {activeTab === 'Settings' && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-6">
+          <div className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder rounded-2xl p-6 shadow-xs space-y-6">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">Pharmacy configurations</h3>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">Pharmacy configurations</h3>
               <p className="text-xs text-slate-400">Modify address, name, and auto-scheduling options.</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700">
+            <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700 dark:text-slate-200">
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Default Hourly Rate (₹/hr)</label>
-                <input type="number" defaultValue={65} className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Default Hourly Rate (₹/hr)</label>
+                <input type="number" defaultValue={65} className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
-                <label className="font-bold text-slate-600 block">Auto-Assign Replacements</label>
-                <select className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
+                <label className="font-bold text-slate-600 dark:text-slate-300 block">Auto-Assign Replacements</label>
+                <select className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
                   <option>Enabled (Auto-dispatch matched)</option>
                   <option>Disabled (Manual dispatch review)</option>
                 </select>
@@ -695,33 +695,33 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
           <form onSubmit={handleAddShift} className="space-y-4 flex-1">
             <div className="space-y-1.5">
               <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Shift Title</label>
-              <input type="text" required value={shiftTitle} onChange={e => setShiftTitle(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
+              <input type="text" required value={shiftTitle} onChange={e => setShiftTitle(e.target.value)} className="w-full bg-white dark:bg-darkCard/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Date</label>
-                <input type="date" required value={shiftDate} onChange={e => setShiftDate(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
+                <input type="date" required value={shiftDate} onChange={e => setShiftDate(e.target.value)} className="w-full bg-white dark:bg-darkCard/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Hourly Rate (₹)</label>
-                <input type="number" required min={40} value={shiftRate} onChange={e => setShiftRate(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
+                <input type="number" required min={40} value={shiftRate} onChange={e => setShiftRate(e.target.value)} className="w-full bg-white dark:bg-darkCard/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Start Time</label>
-                <input type="text" required placeholder="08:00" value={shiftStart} onChange={e => setShiftStart(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
+                <input type="text" required placeholder="08:00" value={shiftStart} onChange={e => setShiftStart(e.target.value)} className="w-full bg-white dark:bg-darkCard/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">End Time</label>
-                <input type="text" required placeholder="16:00" value={shiftEnd} onChange={e => setShiftEnd(e.target.value)} className="w-full bg-white/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
+                <input type="text" required placeholder="16:00" value={shiftEnd} onChange={e => setShiftEnd(e.target.value)} className="w-full bg-white dark:bg-darkCard/5 border border-slate-800 rounded-xl p-2.5 text-xs text-white outline-none focus:border-[#0057FF]" />
               </div>
             </div>
-            <label className="flex items-center space-x-3 p-3.5 rounded-xl bg-white/5 border border-slate-800 cursor-pointer hover:border-slate-700 transition-all group">
+            <label className="flex items-center space-x-3 p-3.5 rounded-xl bg-white dark:bg-darkCard/5 border border-slate-800 cursor-pointer hover:border-slate-700 transition-all group">
               <div
                 onClick={() => setShiftIsEmergency(v => !v)}
                 className={`w-5 h-5 rounded-[5px] border flex items-center justify-center cursor-pointer transition-all flex-shrink-0
-                  ${shiftIsEmergency ? 'bg-[#0057FF] border-[#0057FF]' : 'border-slate-800 bg-white/5 hover:border-[#00B7FF]/50'}`}
+                  ${shiftIsEmergency ? 'bg-[#0057FF] border-[#0057FF]' : 'border-slate-800 bg-white dark:bg-darkCard/5 hover:border-[#00B7FF]/50'}`}
               >
                 {shiftIsEmergency && <span className="text-white text-[10px] font-bold">✓</span>}
               </div>
@@ -753,7 +753,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
             ) : (
               matchingCandidates.map(c => (
                 <div key={c.pharmacist_id}
-                  className="bg-white/5 border border-slate-800 p-4 rounded-xl flex items-center justify-between hover:border-slate-700 transition-all group">
+                  className="bg-white dark:bg-darkCard/5 border border-slate-800 p-4 rounded-xl flex items-center justify-between hover:border-slate-700 transition-all group">
                   <div className="space-y-1.5">
                     <div className="flex items-center space-x-2">
                       <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#00B7FF] to-[#0057FF] flex items-center justify-center text-white text-[10px] font-black">
@@ -769,7 +769,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                       <span className="bg-[#22C55E]/10 text-[#22C55E] text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-0.5">
                         <MapPin size={8} /><span>{c.distance} km</span>
                       </span>
-                      <span className="bg-white/5 border border-slate-800 text-slate-400 text-[9px] font-bold px-2 py-0.5 rounded-full">
+                      <span className="bg-white dark:bg-darkCard/5 border border-slate-800 text-slate-400 text-[9px] font-bold px-2 py-0.5 rounded-full">
                         Trust: {c.trust_score}%
                       </span>
                     </div>

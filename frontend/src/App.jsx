@@ -195,7 +195,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#071426] text-slate-800 flex flex-row overflow-hidden">
       <Navbar user={user} activeTab={activeTab} setActiveTab={setActiveTab} onLogout={handleLogout} API_BASE={API_BASE} />
-      <main className="flex-1 overflow-y-auto h-screen bg-[#F8FAFC]">
+      <main className="flex-1 overflow-y-auto h-screen bg-[#F8FAFC] dark:bg-darkBg transition-colors duration-200">
         <AnimatePresence mode="wait">
           <motion.div
             key={`${user.role}-${activeTab}`}

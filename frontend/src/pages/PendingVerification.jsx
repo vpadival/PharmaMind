@@ -157,7 +157,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                       placeholder="Pharmacy Name"
                       value={pharmacyName}
                       onChange={(e) => setPharmacyName(e.target.value)}
-                      className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
+                      className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
                     />
                   </div>
                 </div>
@@ -172,7 +172,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                       placeholder="Address"
                       value={address}
                       onChange={(e) => setAddress(e.target.value)}
-                      className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
+                      className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
                     />
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     required
                     value={ownerLat}
                     onChange={(e) => setOwnerLat(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     required
                     value={ownerLon}
                     onChange={(e) => setOwnerLon(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
               </>
@@ -214,7 +214,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                       placeholder="Dr. Full Name"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
-                      className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
+                      className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
                     />
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                       placeholder="License Ref"
                       value={licenseNumber}
                       onChange={(e) => setLicenseNumber(e.target.value)}
-                      className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
+                      className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none pl-10 pr-4 py-3"
                     />
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     placeholder="State (e.g. NY)"
                     value={licenseState}
                     onChange={(e) => setLicenseState(e.target.value.toUpperCase())}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
 
@@ -255,7 +255,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     min={0}
                     value={experienceYears}
                     onChange={(e) => setExperienceYears(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
 
@@ -266,7 +266,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     placeholder="Immunization, MTM, Oncology (comma separated)"
                     value={skills}
                     onChange={(e) => setSkills(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
 
@@ -278,7 +278,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     required
                     value={phLat}
                     onChange={(e) => setPhLat(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
 
@@ -290,7 +290,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                     required
                     value={phLon}
                     onChange={(e) => setPhLon(e.target.value)}
-                    className="w-full bg-white/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
+                    className="w-full bg-white dark:bg-darkCard/[0.02] border border-white/10 focus:border-[#00B7FF]/60 text-white placeholder:text-slate-500 rounded-xl text-[13px] outline-none px-4 py-3"
                   />
                 </div>
               </>
@@ -302,7 +302,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
             <button
               type="button"
               onClick={onLogout}
-              className="flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all cursor-pointer w-full sm:w-auto justify-center"
+              className="flex items-center space-x-2 bg-white dark:bg-darkCard/5 hover:bg-white dark:bg-darkCard/10 border border-white/10 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all cursor-pointer w-full sm:w-auto justify-center"
             >
               <LogOut size={13} />
               <span>Log Out</span>
@@ -313,7 +313,7 @@ export default function PendingVerification({ user, onLogout, API_BASE, onRefres
                 type="button"
                 onClick={handleRefresh}
                 disabled={refreshing}
-                className="flex items-center space-x-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all cursor-pointer w-full sm:w-auto justify-center disabled:opacity-50"
+                className="flex items-center space-x-2 bg-white dark:bg-darkCard/5 hover:bg-white dark:bg-darkCard/10 border border-white/10 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all cursor-pointer w-full sm:w-auto justify-center disabled:opacity-50"
               >
                 <RefreshCw size={13} className={refreshing ? 'animate-spin' : ''} />
                 <span>Check Approval</span>
