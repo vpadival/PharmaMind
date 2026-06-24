@@ -500,8 +500,8 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                       </div>
                     ))}
                     <button
-                      onClick={() => setActiveTab && setActiveTab('Simulator')}
-                      className="w-full mt-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 dark:border-darkBorder text-slate-600 dark:text-slate-300 font-bold text-[11px] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-1.5"
+                      onClick={() => setActiveTab && setActiveTab('Continuity Simulator')}
+                      className="w-full mt-2.5 bg-slate-50 hover:bg-slate-100 dark:bg-darkCard dark:hover:bg-slate-800 border border-slate-200 dark:border-darkBorder text-slate-600 dark:text-slate-300 font-bold text-[11px] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center space-x-1.5"
                     >
                       <span>Run New Simulation</span>
                     </button>
