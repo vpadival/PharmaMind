@@ -619,7 +619,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                       </div>
                     </div>
 
-                    <div className="bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-4">
+                    <div className="bg-slate-50 dark:bg-darkBg border border-slate-200 dark:border-darkBorder rounded-xl p-4">
                       <span className="text-[10px] uppercase font-bold text-slate-400 block mb-2">Simulation Recommendations</span>
                       <ul className="space-y-2">
                         {simResults.recommendations.map((rec, i) => (
@@ -630,12 +630,23 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
 
                     <button
                       onClick={() => { setSimStep(1); setSimResults(null); }}
-                      className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 dark:text-slate-300 font-bold py-2.5 rounded-xl transition-all text-center cursor-pointer border border-slate-200 dark:border-darkBorder"
+                      className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 dark:bg-darkCard dark:hover:bg-slate-800 dark:text-slate-300 font-bold py-2.5 rounded-xl transition-all text-center cursor-pointer border border-slate-200 dark:border-darkBorder"
                     >
                       Reset Simulator
                     </button>
                   </div>
-                ) : null}
+                ) : (
+                  <div className="py-8 text-center space-y-4">
+                    <span className="text-red-500 font-bold block">Simulation failed to run.</span>
+                    <p className="text-xs text-slate-400">The backend engine encountered an error while processing the simulation.</p>
+                    <button
+                      onClick={() => setSimStep(1)}
+                      className="px-6 bg-slate-100 hover:bg-slate-200 text-slate-600 dark:bg-darkCard dark:hover:bg-slate-800 dark:text-slate-300 font-bold py-2.5 rounded-xl transition-all text-center cursor-pointer border border-slate-200 dark:border-darkBorder"
+                    >
+                      Go Back
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
