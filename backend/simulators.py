@@ -89,6 +89,18 @@ class ContinuitySimulator:
                 additional_demand = int(math.ceil(total_shifts_needed * (holiday_multiplier - 1.0)))
                 total_shifts_needed += additional_demand
                 unfilled_shifts += additional_demand
+                
+            # --- STOCHASTIC MONTE-CARLO VARIANCE ---
+            import random
+            # 15% chance of 1 unexpected call-out, 5% chance of 2
+            unexpected_absences = random.choices([0, 1, 2], weights=[0.80, 0.15, 0.05])[0]
+            simulated_absences += unexpected_absences
+            unfilled_shifts += unexpected_absences
+            
+            # Demand surge variance (0 to 1 extra shift needed on random days)
+            if random.random() < 0.2:
+                total_shifts_needed += 1
+                unfilled_shifts += 1
 
             # 2. Predict Metrics
             # Shortage prediction
