@@ -678,11 +678,11 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
             <div className="grid md:grid-cols-2 gap-6 text-xs text-slate-700 dark:text-slate-200">
               <div className="space-y-2">
                 <label className="font-bold text-slate-600 dark:text-slate-300 block">Default Hourly Rate (₹/hr)</label>
-                <input type="number" defaultValue={65} className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
+                <input type="number" defaultValue={65} className="w-full bg-slate-50 dark:bg-darkBg border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]" />
               </div>
               <div className="space-y-2">
                 <label className="font-bold text-slate-600 dark:text-slate-300 block">Auto-Assign Replacements</label>
-                <select className="w-full bg-slate-50 border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
+                <select className="w-full bg-slate-50 dark:bg-darkBg border border-slate-200 dark:border-darkBorder rounded-xl p-2.5 outline-none focus:border-[#0057FF]">
                   <option>Enabled (Auto-dispatch matched)</option>
                   <option>Disabled (Manual dispatch review)</option>
                 </select>

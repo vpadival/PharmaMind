@@ -20,12 +20,12 @@ const STATUS_COLORS = {
 
 function KpiCard({ label, value, sub, icon: Icon, iconColor, iconBg, loading }) {
   return (
-    <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs flex items-center justify-between group hover:border-blue-200 transition-all duration-300">
+    <div className="bg-white dark:bg-darkCard border border-slate-200/80 dark:border-darkBorder rounded-2xl p-5 shadow-xs flex items-center justify-between group hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300">
       <div className="space-y-1.5">
         <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">{label}</span>
         {loading
-          ? <span className="block w-20 h-6 bg-slate-100 rounded animate-pulse" />
-          : <span className="text-2xl font-black text-slate-900 tracking-tight block">{value ?? '—'}</span>
+          ? <span className="block w-20 h-6 bg-slate-100 dark:bg-slate-800 rounded animate-pulse" />
+          : <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight block">{value ?? '—'}</span>
         }
         <span className="text-[10px] text-slate-400 font-medium block">{sub}</span>
       </div>
@@ -111,12 +111,12 @@ export default function AnalyticsReports() {
   ] : [];
 
   return (
-    <div className="bg-[#F8FAFC] text-slate-800 min-h-screen px-8 py-8 space-y-8 select-none animate-scale-in">
+    <div className="bg-[#F8FAFC] dark:bg-transparent text-slate-800 dark:text-slate-200 min-h-screen px-8 py-8 space-y-8 select-none animate-scale-in">
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">Analytics & Reports</h1>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Analytics & Reports</h1>
           <p className="text-slate-500 text-xs mt-1">
             Live workforce trends, shift completion data, and stability metrics from the database.
           </p>
@@ -126,7 +126,7 @@ export default function AnalyticsReports() {
           <button
             onClick={fetchAnalytics}
             disabled={loading}
-            className="flex items-center space-x-2 bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold shadow-sm text-slate-600 hover:border-blue-300 transition cursor-pointer disabled:opacity-50"
+            className="flex items-center space-x-2 bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder px-4 py-2 rounded-xl text-xs font-semibold shadow-sm text-slate-600 dark:text-slate-300 hover:border-blue-300 transition cursor-pointer disabled:opacity-50"
           >
             <RefreshCw size={13} className={loading ? 'animate-spin' : ''} />
             <span>Refresh</span>
@@ -165,9 +165,9 @@ export default function AnalyticsReports() {
       <div className="grid lg:grid-cols-3 gap-6">
 
         {/* Daily shift volume — last 14 days */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs lg:col-span-2 space-y-4">
+        <div className="bg-white dark:bg-darkCard border border-slate-200/80 dark:border-darkBorder rounded-2xl p-5 shadow-xs lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-800">Daily Shift Volume <span className="text-slate-400 font-normal">(last 14 days)</span></h3>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Daily Shift Volume <span className="text-slate-400 font-normal">(last 14 days)</span></h3>
             <TrendingUp size={14} className="text-slate-400" />
           </div>
           <div className="h-64">
@@ -195,9 +195,9 @@ export default function AnalyticsReports() {
         </div>
 
         {/* Status breakdown donut */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+        <div className="bg-white dark:bg-darkCard border border-slate-200/80 dark:border-darkBorder rounded-2xl p-5 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-800">Shift Status Breakdown</h3>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Shift Status Breakdown</h3>
           </div>
           <div className="h-48 relative flex items-center justify-center">
             {loading
@@ -232,9 +232,9 @@ export default function AnalyticsReports() {
       <div className="grid lg:grid-cols-2 gap-6">
 
         {/* Top performing pharmacies (admin only) */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-            <h3 className="text-sm font-bold text-slate-800">Top Performing Pharmacies</h3>
+        <div className="bg-white dark:bg-darkCard border border-slate-200/80 dark:border-darkBorder rounded-2xl p-5 shadow-xs space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-darkBorder">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Top Performing Pharmacies</h3>
           </div>
           {loading
             ? <div className="space-y-2">{Array.from({ length: 3 }).map((_, i) => <div key={i} className="h-8 bg-slate-50 rounded-lg animate-pulse" />)}</div>
@@ -252,8 +252,8 @@ export default function AnalyticsReports() {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {data.top_pharmacies.map((pharm, idx) => (
-                        <tr key={idx} className="text-xs text-slate-600 hover:bg-slate-50/50 transition-colors">
-                          <td className="py-3 font-bold text-slate-800">{pharm.name}</td>
+                        <tr key={idx} className="text-xs text-slate-600 dark:text-slate-300 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                          <td className="py-3 font-bold text-slate-800 dark:text-white">{pharm.name}</td>
                           <td className="py-3 font-semibold text-[#22C55E]">{pharm.fillRate}</td>
                           <td className="py-3">
                             <div className="flex items-center space-x-1">
@@ -261,7 +261,7 @@ export default function AnalyticsReports() {
                               <span className="font-bold">{pharm.rating}</span>
                             </div>
                           </td>
-                          <td className="py-3 text-right font-bold text-slate-800">{pharm.shifts}</td>
+                          <td className="py-3 text-right font-bold text-slate-800 dark:text-white">{pharm.shifts}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -274,9 +274,9 @@ export default function AnalyticsReports() {
         </div>
 
         {/* Workforce health trend */}
-        <div className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+        <div className="bg-white dark:bg-darkCard border border-slate-200/80 dark:border-darkBorder rounded-2xl p-5 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-bold text-slate-800">Workforce Health Trend</h3>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">Workforce Health Trend</h3>
             <div className="flex space-x-3 text-[10px] font-bold uppercase tracking-wider">
               <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded-full bg-[#0057FF]" /><span>Health</span></span>
               <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded-full bg-[#22C55E]" /><span>Fill Rate</span></span>

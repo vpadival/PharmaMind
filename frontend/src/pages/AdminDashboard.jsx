@@ -162,9 +162,9 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
                   <div key={i} className="bg-white dark:bg-darkCard border border-slate-200 dark:border-darkBorder/80 rounded-2xl p-5 shadow-xs flex items-center justify-between hover:border-blue-200 transition-all duration-300">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">{m.label}</span>
-                      <span className="text-2xl font-black text-slate-950 block mt-1 tracking-tight">{m.value}</span>
+                      <span className="text-2xl font-black text-slate-950 dark:text-white block mt-1 tracking-tight">{m.value}</span>
                       <div className="flex items-center space-x-1.5 mt-1">
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600">{m.trend}</span>
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">{m.trend}</span>
                         <span className="text-[10px] text-slate-400">vs last month</span>
                       </div>
                     </div>
