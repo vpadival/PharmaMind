@@ -563,7 +563,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                     key={scen.key}
                     onClick={() => { setSimScenario(scen.key); setSimStep(2); }}
                     className={`p-4 border rounded-xl cursor-pointer hover:border-blue-300 transition-all ${
-                      simScenario === scen.key ? 'border-[#0057FF] bg-[#0057FF]/5' : 'border-slate-200 dark:border-darkBorder bg-slate-50/30'
+                      simScenario === scen.key ? 'border-[#0057FF] bg-[#0057FF]/5 dark:bg-[#0057FF]/20' : 'border-slate-200 dark:border-darkBorder bg-slate-50/30 dark:bg-slate-800/30'
                     }`}
                   >
                     <span className="text-xs font-bold text-slate-800 dark:text-white block">{scen.title}</span>
