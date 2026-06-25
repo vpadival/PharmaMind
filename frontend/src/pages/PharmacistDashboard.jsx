@@ -306,7 +306,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                           placeholder="Filter Pharmacy..."
                           value={searchQuery}
                           onChange={e => setSearchQuery(e.target.value)}
-                          className="bg-slate-50 border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white pl-7 pr-2.5 py-1.5 rounded-lg text-[10px] outline-none w-32 focus:border-[#0057FF]"
+                          className="bg-slate-50 dark:bg-darkCard border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white pl-7 pr-2.5 py-1.5 rounded-lg text-[10px] outline-none w-32 focus:border-[#0057FF]"
                         />
                       </div>
                       <input
@@ -314,7 +314,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         placeholder="Min Rate..."
                         value={rateFilter}
                         onChange={e => setRateFilter(e.target.value)}
-                        className="bg-slate-50 border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white px-2.5 py-1.5 rounded-lg text-[10px] outline-none w-20 focus:border-[#0057FF]"
+                        className="bg-slate-50 dark:bg-darkCard border border-slate-200 dark:border-darkBorder text-slate-800 dark:text-white px-2.5 py-1.5 rounded-lg text-[10px] outline-none w-20 focus:border-[#0057FF]"
                       />
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                         className={`px-3 py-1 rounded-full text-[10px] font-bold border transition-all cursor-pointer ${
                           activeFilterPill === pill.id
                             ? 'bg-[#00B7FF] text-white border-[#00B7FF] shadow-xs'
-                            : 'bg-slate-50 border-slate-200 dark:border-darkBorder text-slate-500 hover:text-slate-800 dark:text-white'
+                            : 'bg-slate-50 dark:bg-darkCard border-slate-200 dark:border-darkBorder text-slate-500 hover:text-slate-800 dark:text-slate-300 dark:hover:text-white'
                         }`}
                       >
                         {pill.label}
