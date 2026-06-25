@@ -384,7 +384,7 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                   <div className="flex items-center justify-between">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Demand Forecast (Next 7 Days)</h3>
                     <div className="flex space-x-2 text-[9px] font-bold text-slate-400">
-                      <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-slate-100 border border-slate-200 dark:border-darkBorder" /><span>Low</span></span>
+                      <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-darkBorder" /><span>Low</span></span>
                       <span className="flex items-center space-x-1"><span className="w-2 h-2 rounded bg-[#00B7FF]" /><span>High</span></span>
                     </div>
                   </div>
@@ -401,9 +401,9 @@ export default function OwnerDashboard({ user, activeTab, setActiveTab, API_BASE
                         <span className="text-[10px] font-bold text-slate-400 flex items-center">{time}</span>
                         {Array.from({ length: 7 }).map((_, colIdx) => {
                           const intensity = (rowIdx + colIdx) % 3;
-                          const bgClass = intensity === 0 ? 'bg-slate-100' : intensity === 1 ? 'bg-[#00B7FF]/20' : 'bg-[#00B7FF]/60';
+                          const bgClass = intensity === 0 ? 'bg-slate-100 dark:bg-slate-800/60' : intensity === 1 ? 'bg-[#00B7FF]/20' : 'bg-[#00B7FF]/60';
                           return (
-                            <div key={colIdx} className={`h-8 rounded-lg ${bgClass} border border-white hover:border-[#0057FF] transition-all cursor-pointer`} title="Predicted Shifts Required" />
+                            <div key={colIdx} className={`h-8 rounded-lg ${bgClass} border border-white dark:border-darkCard hover:border-[#0057FF] transition-all cursor-pointer`} title="Predicted Shifts Required" />
                           );
                         })}
                       </React.Fragment>
