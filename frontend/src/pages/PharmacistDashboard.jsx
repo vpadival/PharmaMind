@@ -751,7 +751,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                 </div>
                 <h4 className="text-lg font-black text-slate-800 dark:text-white mb-1">State Pharmacy License</h4>
                 <p className="text-sm text-slate-500 mb-4">Board of Pharmacy • State of {profile?.license_state || 'Operation'}</p>
-                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
+                <div className="bg-slate-50 dark:bg-darkBg rounded-xl p-3 border border-slate-100 dark:border-darkBorder flex justify-between items-center">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">License No.</span>
                     <span className="font-mono text-sm font-bold text-slate-700 dark:text-slate-200">{profile?.license_number || 'PH-XXXXX'}</span>
@@ -772,7 +772,7 @@ export default function PharmacistDashboard({ user, activeTab, API_BASE }) {
                 </div>
                 <h4 className="text-lg font-black text-slate-800 dark:text-white mb-1">Immunization Certification</h4>
                 <p className="text-sm text-slate-500 mb-4">APhA Pharmacy-Based Immunization Delivery</p>
-                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 flex justify-between items-center">
+                <div className="bg-slate-50 dark:bg-darkBg rounded-xl p-3 border border-slate-100 dark:border-darkBorder flex justify-between items-center">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Certificate ID</span>
                     <span className="font-mono text-sm font-bold text-slate-700 dark:text-slate-200">IMZ-99281-A</span>
