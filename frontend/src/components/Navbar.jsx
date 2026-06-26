@@ -151,7 +151,7 @@ export default function Navbar({ user, activeTab, setActiveTab, onLogout, API_BA
                   transition={{ duration: 0.2 }}
                   className="leading-tight overflow-hidden"
                 >
-                  <span className="font-extrabold text-sm text-white tracking-tight block">PharmaSphere <span className="text-[#00B7FF]">AI</span></span>
+                  <span className="font-extrabold text-sm text-white tracking-tight block">PharmaMind <span className="text-[#00B7FF]">AI</span></span>
                   <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Workforce Platform</span>
                 </motion.div>
               )}

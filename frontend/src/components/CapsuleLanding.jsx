@@ -166,7 +166,7 @@ export default function CapsuleLanding({ onComplete }) {
             <Pill size={16} className="text-white transform rotate-45" />
           </div>
           <span className="font-extrabold text-lg tracking-tight text-white">
-            PharmaSphere <span className="text-[#00B7FF]">AI</span>
+            PharmaMind <span className="text-[#00B7FF]">AI</span>
           </span>
         </div>
 

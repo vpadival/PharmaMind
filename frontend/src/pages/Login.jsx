@@ -101,7 +101,7 @@ export default function Login({ onLoginSuccess, API_BASE }) {
   };
 
   const quickLogins = [
-    { label: 'Admin', icon: Shield, email: 'admin@pharmasphere.ai', pass: 'admin123' },
+    { label: 'Admin', icon: Shield, email: 'admin@pharmamind.ai', pass: 'admin123' },
     { label: 'Owner', icon: Store, email: 'owner1@pharmacy.com', pass: 'owner123' },
     { label: 'Pharmacist', icon: User, email: 'pharmacist1@pharma.com', pass: 'pharma123' },
   ];
@@ -128,7 +128,7 @@ export default function Login({ onLoginSuccess, API_BASE }) {
           <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#00B7FF] to-[#0057FF] flex items-center justify-center shadow-lg shadow-[#0057FF]/20 mb-3">
             <Shield size={20} className="text-white" strokeWidth={2.5} />
           </div>
-          <h1 className="font-extrabold text-xl text-white tracking-tight">PharmaSphere AI</h1>
+          <h1 className="font-extrabold text-xl text-white tracking-tight">PharmaMind AI</h1>
           <p className="text-[12px] text-slate-400 mt-1 font-semibold uppercase tracking-wider">Welcome Back!</p>
           <p className="text-[11px] text-slate-500 mt-0.5">
             {isRegister ? 'Create an account to join the platform' : 'Login to continue to your account'}

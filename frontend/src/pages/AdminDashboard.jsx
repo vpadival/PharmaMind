@@ -597,7 +597,7 @@ export default function AdminDashboard({ user, activeTab, API_BASE }) {
               <p className="text-slate-500">[2026-06-10 22:30:12] Initializing model inference managers...</p>
               <p className="text-slate-500">[2026-06-10 22:30:15] Load ML Model: demand_model.pkl (992 KB)</p>
               <p className="text-slate-500">[2026-06-10 22:30:17] Load ML Model: shortage_model.pkl (448 KB)</p>
-              <p className="text-slate-500">[2026-06-10 22:30:18] SQLite registry connected successfully: pharmasphere.db</p>
+              <p className="text-slate-500">[2026-06-10 22:30:18] SQLite registry connected successfully: pharmamind.db</p>
               <p className="text-blue-400">[2026-06-10 22:31:05] API REQUEST: GET /api/auth/me - 200 OK</p>
               <p className="text-blue-400">[2026-06-10 22:32:44] API REQUEST: GET /api/admin/licenses - 200 OK</p>
               <p className="text-blue-400">[2026-06-10 22:32:45] API REQUEST: GET /api/admin/fraud-audit - 200 OK</p>

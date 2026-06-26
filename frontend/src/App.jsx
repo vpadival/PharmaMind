@@ -119,7 +119,7 @@ function App() {
             {/* HD Image Asset */}
             <img
               src="/landing_capsule_hd.png"
-              alt="PharmaSphere Capsule"
+              alt="PharmaMind Capsule"
               className="w-56 h-56 object-contain relative z-10 filter drop-shadow-[0_15px_30px_rgba(0,183,255,0.3)]"
             />
             
@@ -129,7 +129,7 @@ function App() {
 
           {/* Typography */}
           <h1 className="text-3xl font-black text-white tracking-tight mb-2">
-            PharmaSphere <span className="bg-gradient-to-r from-[#00B7FF] to-[#0057FF] bg-clip-text text-transparent">AI</span>
+            PharmaMind <span className="bg-gradient-to-r from-[#00B7FF] to-[#0057FF] bg-clip-text text-transparent">AI</span>
           </h1>
           <p className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-[#00B7FF] mb-6">
             Intelligent Pharmacy Workforce Continuity Platform
