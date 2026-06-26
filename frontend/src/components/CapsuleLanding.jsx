@@ -170,14 +170,7 @@ export default function CapsuleLanding({ onComplete }) {
           </span>
         </div>
 
-        {/* Navigation links */}
-        <nav className="hidden md:flex items-center space-x-8 text-xs font-semibold text-slate-400">
-          {['Home', 'About', 'Features', 'Contact'].map((item) => (
-            <a key={item} href="#" className="hover:text-white transition-colors" onClick={(e) => { e.preventDefault(); handleStartTransition(); }}>
-              {item}
-            </a>
-          ))}
-        </nav>
+        {/* Navigation links removed - previously hardcoded dummy links */}
 
         {/* CTA Button */}
         <button
